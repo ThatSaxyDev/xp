@@ -264,7 +264,7 @@ class _AddScreenState extends ConsumerState<AddScreen> {
               helper: null,
               padding: EdgeInsets.symmetric(horizontal: 20.w),
               child: CupertinoButton(
-                onPressed: () => showPicker(
+                onPressed: () => categories.isNotEmpty ? showPicker(
                   context,
                   CupertinoPicker(
                     scrollController: FixedExtentScrollController(
@@ -301,7 +301,7 @@ class _AddScreenState extends ConsumerState<AddScreen> {
                       );
                     }),
                   ),
-                ),
+                ) : null,
                 child: Text(
                   categories.isEmpty
                       ? "Create a category first"

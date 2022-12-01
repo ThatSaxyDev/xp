@@ -156,7 +156,7 @@ class SettingsScreen extends ConsumerWidget {
                 ),
               ),
               Text(
-                '@kiishidart',
+                'kiishidart©',
                 style: TextStyle(fontSize: 16.sp),
               ),
             ],

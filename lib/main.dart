@@ -31,7 +31,7 @@ class MyApp extends ConsumerWidget {
           home: child,
         );
       },
-      child: SplashScreen(),
+      child: const SplashScreen(),
     );
   }
 }

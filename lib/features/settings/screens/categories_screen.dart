@@ -6,6 +6,7 @@ import 'package:exptrak/realm.dart';
 // import 'package:exptrak/models/category.dart';
 import 'package:exptrak/shared/app_elements/app_colors.dart';
 import 'package:exptrak/shared/utils/alert_dialog.dart';
+import 'package:exptrak/shared/utils/utils.dart';
 import 'package:exptrak/shared/widgets/spacer.dart';
 import 'package:exptrak/theme/palette.dart';
 import 'package:flex_color_picker/flex_color_picker.dart';
@@ -13,7 +14,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:lottie/lottie.dart';
+// import 'package:lottie/lottie.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 
 class CategoriesScreen extends ConsumerStatefulWidget {
@@ -49,11 +50,15 @@ class _CategoriesScreenState extends ConsumerState<CategoriesScreen> {
   }
 
   void createCategory() {
-    log("${categories.length}");
-    var newCategory = realm.write<Category>(
-        () => realm.add(Category(_textController.text, pickerColor.value)));
-    setState(() => categories.add(newCategory));
-    _textController.clear();
+    if (_textController.text.isNotEmpty) {
+      log("${categories.length}");
+      var newCategory = realm.write<Category>(
+          () => realm.add(Category(_textController.text, pickerColor.value)));
+      setState(() => categories.add(newCategory));
+      _textController.clear();
+    } else {
+      showSnackBar(context, 'Type a category name');
+    }
   }
 
   @override

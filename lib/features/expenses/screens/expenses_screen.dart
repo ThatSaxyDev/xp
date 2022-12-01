@@ -53,142 +53,121 @@ class _ExpensesScreenState extends ConsumerState<ExpensesScreen> {
   Widget build(BuildContext context) {
     final currenTheme = ref.watch(themeNotifierProvider);
     return Scaffold(
-        // backgroundColor: AppColors.black,
-        appBar: AppBar(
-          elevation: 0,
-          backgroundColor: currenTheme.backgroundColor,
-          title: Text(
-            'Expenses',
-            style: TextStyle(
-              fontSize: 25.sp,
-              fontWeight: FontWeight.w700,
-              color: currenTheme.textTheme.bodyText2!.color!,
-            ),
+      // backgroundColor: AppColors.black,
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: currenTheme.backgroundColor,
+        title: Text(
+          'Expenses',
+          style: TextStyle(
+            fontSize: 25.sp,
+            fontWeight: FontWeight.w700,
+            color: currenTheme.textTheme.bodyText2!.color!,
           ),
         ),
-        body: NestedScrollView(
-          floatHeaderSlivers: true,
-          physics: const AlwaysScrollableScrollPhysics(
-            parent: BouncingScrollPhysics(),
+      ),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Spc(h: 10.h),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                "Total for: ",
+                style: TextStyle(
+                  color: currenTheme.textTheme.bodyText2!.color!,
+                ),
+              ),
+              CupertinoButton(
+                onPressed: () => showPicker(
+                  context,
+                  CupertinoPicker(
+                    scrollController: FixedExtentScrollController(
+                        initialItem: _selectedPeriodIndex),
+                    magnification: 1,
+                    squeeze: 1.2,
+                    useMagnifier: false,
+                    itemExtent: kItemExtent,
+                    // This is called when selected item is changed.
+                    onSelectedItemChanged: (int selectedItem) {
+                      setState(() {
+                        _selectedPeriodIndex = selectedItem;
+                        _expenses = realmExpenses.toList().filterByPeriod(
+                            periods[_selectedPeriodIndex], 0)[0];
+                      });
+                    },
+                    children:
+                        List<Widget>.generate(periods.length, (int index) {
+                      return Center(
+                        child: Text(getPeriodDisplayName(periods[index])),
+                      );
+                    }),
+                  ),
+                ),
+                child: Text(
+                  getPeriodDisplayName(_selectedPeriod),
+                  style: TextStyle(
+                    color: currenTheme.textTheme.bodyText2!.color!,
+                  ),
+                ),
+              ),
+            ],
           ),
-          headerSliverBuilder: (context, innerBoxIsScrolled) => [
-            SliverAppBar(
-              backgroundColor: currenTheme.backgroundColor,
-              toolbarHeight: 140.h,
-              floating: true,
-              snap: true,
-              title: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Spc(h: 10.h),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        "Total for: ",
-                        style: TextStyle(
-                          color: currenTheme.textTheme.bodyText2!.color!,
-                        ),
-                      ),
-                      CupertinoButton(
-                        onPressed: () => showPicker(
-                          context,
-                          CupertinoPicker(
-                            scrollController: FixedExtentScrollController(
-                                initialItem: _selectedPeriodIndex),
-                            magnification: 1,
-                            squeeze: 1.2,
-                            useMagnifier: false,
-                            itemExtent: kItemExtent,
-                            // This is called when selected item is changed.
-                            onSelectedItemChanged: (int selectedItem) {
-                              setState(() {
-                                _selectedPeriodIndex = selectedItem;
-                                _expenses = realmExpenses
-                                    .toList()
-                                    .filterByPeriod(
-                                        periods[_selectedPeriodIndex], 0)[0];
-                              });
-                            },
-                            children: List<Widget>.generate(periods.length,
-                                (int index) {
-                              return Center(
-                                child:
-                                    Text(getPeriodDisplayName(periods[index])),
-                              );
-                            }),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Container(
+                margin: const EdgeInsets.fromLTRB(0, 4, 4, 0),
+                child: Text(AppTexts.naira,
+                    style: TextStyle(
+                      fontSize: 20.sp,
+                      color: CupertinoColors.inactiveGray,
+                    )),
+              ),
+              Text(
+                _total.removeDecimalZeroFormat(),
+                style: TextStyle(
+                  fontSize: 40.sp,
+                  color: currenTheme.textTheme.bodyText2!.color!,
+                ),
+              ),
+            ],
+          ),
+          _expenses.isNotEmpty
+              ? Expanded(
+                  child: Container(
+                    margin: EdgeInsets.fromLTRB(12.w, 16.h, 12.w, 0),
+                    child: ExpensesList(expenses: _expenses),
+                  ),
+                )
+              : Expanded(
+                  // height: 600,
+                  // margin: const EdgeInsets.fromLTRB(16, 0, 16, 0),
+                  child: Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SizedBox(
+                          height: 230.h,
+                          child: Lottie.asset(
+                            'lib/assets/lottie/empty.json',
+                            repeat: false,
                           ),
                         ),
-                        child: Text(
-                          getPeriodDisplayName(_selectedPeriod),
+                        Text(
+                          "No expenses yet",
                           style: TextStyle(
                             color: currenTheme.textTheme.bodyText2!.color!,
                           ),
                         ),
-                      ),
-                    ],
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Container(
-                        margin: const EdgeInsets.fromLTRB(0, 4, 4, 0),
-                        child: Text(AppTexts.naira,
-                            style: TextStyle(
-                              fontSize: 20.sp,
-                              color: CupertinoColors.inactiveGray,
-                            )),
-                      ),
-                      Text(
-                        _total.removeDecimalZeroFormat(),
-                        style: TextStyle(
-                          fontSize: 40.sp,
-                          color: currenTheme.textTheme.bodyText2!.color!,
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-          ],
-          body: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              _expenses.isNotEmpty
-                  ? Expanded(
-                      child: Container(
-                        margin: EdgeInsets.fromLTRB(12.w, 16.h, 12.w, 0),
-                        child: ExpensesList(expenses: _expenses),
-                      ),
-                    )
-                  : Expanded(
-                      // height: 600,
-                      // margin: const EdgeInsets.fromLTRB(16, 0, 16, 0),
-                      child: Center(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            SizedBox(
-                              height: 230.h,
-                              child: Lottie.asset(
-                                'lib/assets/lottie/empty.json',
-                                repeat: false,
-                              ),
-                            ),
-                            Text(
-                              "No expenses yet",
-                              style: TextStyle(
-                                color: currenTheme.textTheme.bodyText2!.color!,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
+                      ],
                     ),
-            ],
-          ),
-        ));
+                  ),
+                ),
+        ],
+      ),
+    );
   }
 }
