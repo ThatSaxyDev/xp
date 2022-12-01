@@ -50,14 +50,17 @@ class _CategoriesScreenState extends ConsumerState<CategoriesScreen> {
   }
 
   void createCategory() {
-    if (_textController.text.isNotEmpty) {
-      log("${categories.length}");
-      var newCategory = realm.write<Category>(
-          () => realm.add(Category(_textController.text, pickerColor.value)));
-      setState(() => categories.add(newCategory));
-      _textController.clear();
-    } else {
-      showSnackBar(context, 'Type a category name');
+    try {
+      if (_textController.text.isNotEmpty) {
+        var newCategory = realm.write<Category>(
+            () => realm.add(Category(_textController.text, pickerColor.value)));
+        setState(() => categories.add(newCategory));
+        _textController.clear();
+      } else {
+        showSnackBar(context, 'Type a category name');
+      }
+    } catch (e) {
+      showSnackBar(context, 'Category exists already! 😗');
     }
   }
 
