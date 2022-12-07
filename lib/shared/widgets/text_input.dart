@@ -56,7 +56,7 @@ class TextInputBox extends StatelessWidget {
           helperText: " ",
           helperStyle: const TextStyle(fontSize: 0.0005),
           errorStyle: const TextStyle(fontSize: 0.0005),
-          // isDense: true,
+          isDense: true,
 
           suffixIcon: suffixIcon,
           // labelText: hintText,
