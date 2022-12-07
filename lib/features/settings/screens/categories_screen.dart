@@ -143,12 +143,15 @@ class _CategoriesScreenState extends ConsumerState<CategoriesScreen> {
                                     Spc(
                                       w: 20.w,
                                     ),
-                                    Text(
-                                      categories[index].name,
-                                      style: TextStyle(
-                                        color: currenTheme
-                                            .textTheme.bodyText2!.color!,
-                                        fontSize: 20.sp,
+                                    Expanded(
+                                      child: Text(
+                                        categories[index].name,
+                                        style: TextStyle(
+                                          overflow: TextOverflow.ellipsis,
+                                          color: currenTheme
+                                              .textTheme.bodyText2!.color!,
+                                          fontSize: 20.sp,
+                                        ),
                                       ),
                                     ),
                                   ],
@@ -238,6 +241,7 @@ class _CategoriesScreenState extends ConsumerState<CategoriesScreen> {
                         placeholder: "Category name",
                         placeholderStyle: TextStyle(
                           color: currenTheme.textTheme.bodyText2!.color!,
+                          fontFamily: 'Sk-Modernist'
                         ),
                         controller: _textController,
                       ),

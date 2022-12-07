@@ -1,5 +1,4 @@
 import 'package:exptrak/features/auth/screens/splash_screen.dart';
-import 'package:exptrak/test_search.dart';
 import 'package:exptrak/theme/palette.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

@@ -1,3 +1,4 @@
+import 'package:exptrak/features/add_expense/screens/add_expense_screen.dart';
 import 'package:exptrak/features/add_expense/screens/add_screen.dart';
 import 'package:exptrak/features/expenses/screens/expenses_screen.dart';
 import 'package:exptrak/features/navigation_bar/icons/nav_bar_item.dart';
@@ -23,7 +24,7 @@ class _BottomNavBarState extends ConsumerState<BottomNavBar> {
   List<Widget> pages = [
     const ExpensesScreen(),
     const ReportsScreen(),
-    const AddScreen(),
+    const AddExpenseScreen(),
     const SettingsScreen(),
   ];
 

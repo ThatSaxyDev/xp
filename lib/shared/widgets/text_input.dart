@@ -1,8 +1,8 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:exptrak/shared/app_elements/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import 'package:exptrak/shared/app_elements/app_colors.dart';
 
 class TextInputBox extends StatelessWidget {
   final double? height;
@@ -12,6 +12,10 @@ class TextInputBox extends StatelessWidget {
   final bool obscuretext;
   final FormFieldValidator<String>? validator;
   final Widget? suffixIcon;
+  final TextInputType? keyboardType;
+  final int? maxLines;
+  final void Function(String)? onChanged;
+  final Color? textColor;
   const TextInputBox({
     Key? key,
     this.height,
@@ -21,21 +25,29 @@ class TextInputBox extends StatelessWidget {
     this.obscuretext = false,
     this.validator,
     this.suffixIcon,
+    this.keyboardType,
+    this.maxLines,
+    this.onChanged,
+    this.textColor,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 56.h,
+      height: height,
       width: width,
       child: TextFormField(
+        onChanged: onChanged,
+        maxLines: maxLines,
         style: TextStyle(
-          fontSize: 15.sp,
+          fontSize: 13.sp,
+          color: textColor,
         ),
         controller: controller,
         obscureText: obscuretext,
         obscuringCharacter: '*',
         cursorColor: Colors.black,
+        keyboardType: keyboardType,
         decoration: InputDecoration(
           floatingLabelBehavior: FloatingLabelBehavior.always,
           filled: true,
@@ -47,19 +59,19 @@ class TextInputBox extends StatelessWidget {
           // isDense: true,
 
           suffixIcon: suffixIcon,
-          labelText: hintText,
-          labelStyle: TextStyle(
-            fontSize: 14.sp,
-            fontWeight: FontWeight.w400,
-            color: AppColors.grey3,
-          ),
-          // hintText: hintText,
-
-          // hintStyle: TextStyle(
-          //   fontSize: 13.sp,
+          // labelText: hintText,
+          // labelStyle: TextStyle(
+          //   fontSize: 14.sp,
           //   fontWeight: FontWeight.w400,
           //   color: AppColors.grey3,
           // ),
+          hintText: hintText,
+
+          hintStyle: TextStyle(
+            fontSize: 15.sp,
+            fontWeight: FontWeight.w400,
+            color: AppColors.grey3,
+          ),
           border: const OutlineInputBorder(
             borderSide: BorderSide(color: AppColors.textBorderGrey),
           ),
@@ -106,12 +118,11 @@ class AltTextInputBox extends StatelessWidget {
       width: width,
       padding: EdgeInsets.only(top: 10.h),
       decoration: BoxDecoration(
-        color: AppColors.textFillGrey,
-        border: Border.all(
-          color: AppColors.textBorderGrey,
-        ),
-        borderRadius: BorderRadius.circular(8.r)
-      ),
+          color: AppColors.textFillGrey,
+          border: Border.all(
+            color: AppColors.textBorderGrey,
+          ),
+          borderRadius: BorderRadius.circular(8.r)),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
