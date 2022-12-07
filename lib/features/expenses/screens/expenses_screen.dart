@@ -1,9 +1,9 @@
 import 'dart:async';
 
 import 'package:collection/collection.dart';
+import 'package:exptrak/features/search/delegates/search_expenses_delegate.dart';
 import 'package:exptrak/models/expense.dart';
 import 'package:exptrak/realm.dart';
-import 'package:exptrak/shared/app_elements/app_colors.dart';
 import 'package:exptrak/shared/app_elements/app_constants.dart';
 import 'package:exptrak/shared/app_elements/app_texts.dart';
 import 'package:exptrak/shared/components.dart/expenses_list.dart';
@@ -19,6 +19,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lottie/lottie.dart';
 import 'package:realm/realm.dart';
+import 'package:unicons/unicons.dart';
 
 class ExpensesScreen extends ConsumerStatefulWidget {
   const ExpensesScreen({super.key});
@@ -65,6 +66,14 @@ class _ExpensesScreenState extends ConsumerState<ExpensesScreen> {
             color: currenTheme.textTheme.bodyText2!.color!,
           ),
         ),
+        actions: [
+          IconButton(
+            onPressed: () {
+              showSearch(context: context, delegate: SearchExpensesDelegate());
+            },
+            icon: const Icon(UniconsLine.search),
+          ),
+        ],
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,

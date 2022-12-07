@@ -1,6 +1,5 @@
 import 'package:exptrak/models/category.dart';
 import 'package:exptrak/models/expense.dart';
-import 'package:exptrak/shared/app_elements/app_colors.dart';
 import 'package:exptrak/shared/types/recurrence.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:realm/realm.dart';

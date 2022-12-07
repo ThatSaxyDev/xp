@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:collection/collection.dart';
 import 'package:exptrak/models/expense.dart';
 import 'package:exptrak/realm.dart';
-import 'package:exptrak/shared/app_elements/app_colors.dart';
 import 'package:exptrak/shared/app_elements/app_constants.dart';
 import 'package:exptrak/shared/app_elements/app_texts.dart';
 import 'package:exptrak/shared/components.dart/expenses_list.dart';
@@ -24,7 +23,8 @@ class FixExpensesScreen extends ConsumerStatefulWidget {
   const FixExpensesScreen({super.key});
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() => _FixExpensesScreenState();
+  ConsumerState<ConsumerStatefulWidget> createState() =>
+      _FixExpensesScreenState();
 }
 
 class _FixExpensesScreenState extends ConsumerState<FixExpensesScreen> {

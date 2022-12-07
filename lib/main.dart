@@ -1,10 +1,9 @@
 import 'package:exptrak/features/auth/screens/splash_screen.dart';
-import 'package:exptrak/features/navigation_bar/widgets/bottom_navigaion_bar.dart';
+import 'package:exptrak/test_search.dart';
 import 'package:exptrak/theme/palette.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 void main() {
   runApp(

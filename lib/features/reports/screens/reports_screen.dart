@@ -6,7 +6,6 @@ import 'package:exptrak/shared/extensions/date_extensions.dart';
 import 'package:exptrak/shared/extensions/expense_extensions.dart';
 import 'package:exptrak/shared/extensions/number_extensions.dart';
 import 'package:exptrak/models/expense.dart';
-import 'package:exptrak/shared/app_elements/app_colors.dart';
 import 'package:exptrak/shared/app_elements/app_constants.dart';
 import 'package:exptrak/shared/utils/picker.dart';
 import 'package:exptrak/shared/types/period.dart';

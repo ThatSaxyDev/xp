@@ -2,9 +2,8 @@ import 'dart:async';
 
 import 'package:exptrak/features/navigation_bar/widgets/bottom_navigaion_bar.dart';
 import 'package:exptrak/shared/app_elements/app_colors.dart';
-import 'package:exptrak/shared/app_elements/app_icons.dart';
 import 'package:exptrak/shared/app_elements/app_images.dart';
-import 'package:exptrak/theme/palette.dart';
+// import 'package:exptrak/theme/palette.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -29,7 +28,7 @@ class _SplashScreenState extends ConsumerState<SplashScreen>
     Timer(const Duration(milliseconds: 4000), () {
       Navigator.of(context).pushAndRemoveUntil(
           MaterialPageRoute(
-            builder: (context) => BottomNavBar(),
+            builder: (context) => const BottomNavBar(),
           ),
           (route) => false);
     });
@@ -37,7 +36,7 @@ class _SplashScreenState extends ConsumerState<SplashScreen>
 
   @override
   Widget build(BuildContext context) {
-    final currenTheme = ref.watch(themeNotifierProvider);
+    // final currenTheme = ref.watch(themeNotifierProvider);
     return Scaffold(
       // backgroundColor: AppColors.neutralWhite,
       body: Center(

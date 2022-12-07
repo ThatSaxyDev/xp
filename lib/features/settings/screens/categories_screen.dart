@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:developer';
 
 import 'package:exptrak/models/category.dart';
 import 'package:exptrak/realm.dart';

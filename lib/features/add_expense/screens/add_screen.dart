@@ -1,6 +1,4 @@
 import 'dart:async';
-
-import 'package:exptrak/features/settings/screens/categories_screen.dart';
 import 'package:exptrak/models/category.dart';
 import 'package:exptrak/models/expense.dart';
 import 'package:exptrak/realm.dart';
@@ -12,13 +10,10 @@ import 'package:exptrak/shared/utils/utils.dart';
 import 'package:exptrak/shared/widgets/spacer.dart';
 import 'package:exptrak/theme/palette.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:lottie/lottie.dart';
-import 'package:phosphor_flutter/phosphor_flutter.dart';
 import 'package:realm/realm.dart';
 
 var recurrences = List.from(Recurrence.values);
@@ -66,7 +61,7 @@ class _AddScreenState extends ConsumerState<AddScreen> {
       realm.write(() => realm.add<Expense>(Expense(
             ObjectId(),
             double.parse(_amountController.value.text),
-            _selectedDate,
+            _selectedDate.add(const Duration(hours: 1)),
             category: categories[_selectedCategoryIndex],
             note: _noteController.value.text.isNotEmpty
                 ? _noteController.value.text
@@ -99,7 +94,7 @@ class _AddScreenState extends ConsumerState<AddScreen> {
       child: Scaffold(
         // backgroundColor: AppColors.black,
         appBar: AppBar(
-          backgroundColor:currenTheme.backgroundColor,
+          backgroundColor: currenTheme.backgroundColor,
           title: Text(
             'Add Expense',
             style: TextStyle(
@@ -118,11 +113,11 @@ class _AddScreenState extends ConsumerState<AddScreen> {
                 style: TextStyle(
                   color: currenTheme.textTheme.bodyText2!.color!,
                   fontSize: 18.sp,
+                  fontFamily: 'Sk-Modernist',
                 ),
               ),
               helper: null,
-              padding:
-                  EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
+              padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
               child: CupertinoTextField.borderless(
                 placeholder: "0",
                 placeholderStyle: TextStyle(
@@ -131,8 +126,8 @@ class _AddScreenState extends ConsumerState<AddScreen> {
                 ),
                 controller: _amountController,
                 onChanged: (value) {
-                  setState(() => canSubmit =
-                      categories.isNotEmpty && value.isNotEmpty);
+                  setState(() =>
+                      canSubmit = categories.isNotEmpty && value.isNotEmpty);
                 },
                 keyboardType: const TextInputType.numberWithOptions(
                   decimal: true,
@@ -142,6 +137,7 @@ class _AddScreenState extends ConsumerState<AddScreen> {
                 style: TextStyle(
                   color: currenTheme.textTheme.bodyText2!.color!,
                   backgroundColor: const Color.fromARGB(0, 0, 0, 0),
+                  fontFamily: 'Sk-Modernist',
                 ),
               ),
             ),
@@ -153,6 +149,7 @@ class _AddScreenState extends ConsumerState<AddScreen> {
                 style: TextStyle(
                   color: currenTheme.textTheme.bodyText2!.color!,
                   fontSize: 18.sp,
+                  fontFamily: 'Sk-Modernist',
                 ),
               ),
               helper: null,
@@ -174,10 +171,15 @@ class _AddScreenState extends ConsumerState<AddScreen> {
                         _selectedRecurrenceIndex = selectedItem;
                       });
                     },
-                    children: List<Widget>.generate(recurrences.length,
-                        (int index) {
+                    children:
+                        List<Widget>.generate(recurrences.length, (int index) {
                       return Center(
-                        child: Text(recurrences[index]),
+                        child: Text(
+                          recurrences[index],
+                          style: const TextStyle(
+                            fontFamily: 'Sk-Modernist',
+                          ),
+                        ),
                       );
                     }),
                   ),
@@ -198,6 +200,7 @@ class _AddScreenState extends ConsumerState<AddScreen> {
                 style: TextStyle(
                   color: currenTheme.textTheme.bodyText2!.color!,
                   fontSize: 18.sp,
+                  fontFamily: 'Sk-Modernist',
                 ),
               ),
               helper: null,
@@ -219,6 +222,7 @@ class _AddScreenState extends ConsumerState<AddScreen> {
                   '${_selectedDate.month}/${_selectedDate.day}/${_selectedDate.year} ${_selectedDate.hour}:${_selectedDate.minute}',
                   style: const TextStyle(
                     color: AppColors.purple,
+                    fontFamily: 'Sk-Modernist',
                   ),
                 ),
               ),
@@ -231,23 +235,25 @@ class _AddScreenState extends ConsumerState<AddScreen> {
                 style: TextStyle(
                   color: currenTheme.textTheme.bodyText2!.color!,
                   fontSize: 18.sp,
+                  fontFamily: 'Sk-Modernist',
                 ),
               ),
               helper: null,
-              padding:
-                  EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
+              padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
               child: CupertinoTextField.borderless(
                 placeholder: "Keep it short",
                 placeholderStyle: TextStyle(
                   color: AppColors.grey.withOpacity(0.4),
                   fontSize: 17.sp,
+                  fontFamily: 'Sk-Modernist',
                 ),
                 controller: _noteController,
                 textAlign: TextAlign.end,
                 textInputAction: TextInputAction.continueAction,
                 style: TextStyle(
                   color: currenTheme.textTheme.bodyText2!.color!,
-                  backgroundColor: Color.fromARGB(0, 0, 0, 0),
+                  backgroundColor: const Color.fromARGB(0, 0, 0, 0),
+                  fontFamily: 'Sk-Modernist',
                 ),
               ),
             ),
@@ -259,57 +265,62 @@ class _AddScreenState extends ConsumerState<AddScreen> {
                 style: TextStyle(
                   color: currenTheme.textTheme.bodyText2!.color!,
                   fontSize: 18.sp,
+                  fontFamily: 'Sk-Modernist',
                 ),
               ),
               helper: null,
               padding: EdgeInsets.symmetric(horizontal: 20.w),
               child: CupertinoButton(
-                onPressed: () => categories.isNotEmpty ? showPicker(
-                  context,
-                  CupertinoPicker(
-                    scrollController: FixedExtentScrollController(
-                        initialItem: _selectedCategoryIndex),
-                    magnification: 1,
-                    squeeze: 1.2,
-                    useMagnifier: false,
-                    itemExtent: kItemExtent,
-                    // This is called when selected item is changed.
-                    onSelectedItemChanged: (int selectedItem) {
-                      setState(() {
-                        _selectedCategoryIndex = selectedItem;
-                      });
-                    },
-                    children: List<Widget>.generate(categories.length,
-                        (int index) {
-                      return Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 64),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: <Widget>[
-                            Container(
-                                width: 12,
-                                height: 12,
-                                margin:
-                                    const EdgeInsets.fromLTRB(0, 0, 8, 0),
-                                decoration: BoxDecoration(
-                                  color: categories[index].color,
-                                  shape: BoxShape.circle,
-                                )),
-                            Text(categories[index].name),
-                          ],
+                onPressed: () => categories.isNotEmpty
+                    ? showPicker(
+                        context,
+                        CupertinoPicker(
+                          scrollController: FixedExtentScrollController(
+                              initialItem: _selectedCategoryIndex),
+                          magnification: 1,
+                          squeeze: 1.2,
+                          useMagnifier: false,
+                          itemExtent: kItemExtent,
+                          // This is called when selected item is changed.
+                          onSelectedItemChanged: (int selectedItem) {
+                            setState(() {
+                              _selectedCategoryIndex = selectedItem;
+                            });
+                          },
+                          children: List<Widget>.generate(categories.length,
+                              (int index) {
+                            return Container(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 64),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: <Widget>[
+                                  Container(
+                                      width: 12,
+                                      height: 12,
+                                      margin:
+                                          const EdgeInsets.fromLTRB(0, 0, 8, 0),
+                                      decoration: BoxDecoration(
+                                        color: categories[index].color,
+                                        shape: BoxShape.circle,
+                                      )),
+                                  Text(categories[index].name),
+                                ],
+                              ),
+                            );
+                          }),
                         ),
-                      );
-                    }),
-                  ),
-                ) : null,
+                      )
+                    : null,
                 child: Text(
                   categories.isEmpty
-                      ? "Create a category first"
+                      ? "Create a category in settings first"
                       : categories[_selectedCategoryIndex].name,
                   style: TextStyle(
                     color: categories.isEmpty
                         ? AppColors.grey.withOpacity(0.7)
                         : categories[_selectedCategoryIndex].color,
+                    fontFamily: 'Sk-Modernist',
                   ),
                 ),
               ),
@@ -320,8 +331,8 @@ class _AddScreenState extends ConsumerState<AddScreen> {
               margin: const EdgeInsets.only(top: 32),
               child: CupertinoButton(
                 onPressed: canSubmit ? submitExpense : null,
-                padding: const EdgeInsets.symmetric(
-                    horizontal: 20, vertical: 13),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 13),
                 color: AppColors.midPurple,
                 disabledColor: AppColors.midPurple.withOpacity(0.35),
                 borderRadius: BorderRadius.circular(10),

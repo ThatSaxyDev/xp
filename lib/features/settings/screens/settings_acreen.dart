@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:exptrak/features/settings/screens/categories_screen.dart';
 import 'package:exptrak/features/settings/screens/report_screen.dart';
 import 'package:exptrak/models/category.dart';
@@ -10,7 +8,6 @@ import 'package:exptrak/shared/app_elements/app_images.dart';
 import 'package:exptrak/shared/utils/alert_dialog.dart';
 import 'package:exptrak/shared/widgets/spacer.dart';
 import 'package:exptrak/theme/palette.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -124,7 +121,7 @@ class SettingsScreen extends ConsumerWidget {
                 width: double.infinity,
                 decoration: const BoxDecoration(
                   border: Border(
-                     top: BorderSide(color: AppColors.grey),
+                    top: BorderSide(color: AppColors.grey),
                     bottom: BorderSide(color: AppColors.grey),
                   ),
                 ),
