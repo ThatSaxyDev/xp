@@ -47,7 +47,7 @@ class TextInputBox extends ConsumerWidget {
         controller: controller,
         obscureText: obscuretext,
         obscuringCharacter: '*',
-        cursorColor: Colors.black,
+        cursorColor: currenTheme.textTheme.bodyText2!.color,
         keyboardType: keyboardType,
         decoration: InputDecoration(
           floatingLabelBehavior: FloatingLabelBehavior.always,
