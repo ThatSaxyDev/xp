@@ -130,7 +130,6 @@ class _AddExpenseScreenState extends ConsumerState<AddExpenseScreen> {
                       ),
                       Spc(h: 10.h),
                       TextInputBox(
-                        textColor: AppColors.black,
                         onChanged: (value) {
                           setState(() => canSubmit =
                               categories.isNotEmpty && value.isNotEmpty);
@@ -165,7 +164,6 @@ class _AddExpenseScreenState extends ConsumerState<AddExpenseScreen> {
                       ),
                       Spc(h: 10.h),
                       TextInputBox(
-                        textColor: AppColors.black,
                         hintText: 'Type a note',
                         controller: _noteController,
                         keyboardType: TextInputType.multiline,
@@ -263,7 +261,7 @@ class _AddExpenseScreenState extends ConsumerState<AddExpenseScreen> {
                                 width: 160.w,
                                 padding: EdgeInsets.symmetric(horizontal: 24.w),
                                 decoration: BoxDecoration(
-                                  color: AppColors.textFillGrey,
+                                  color: currenTheme.cardColor,
                                   borderRadius: BorderRadius.circular(8.r),
                                 ),
                                 child: Row(
@@ -287,9 +285,10 @@ class _AddExpenseScreenState extends ConsumerState<AddExpenseScreen> {
                                         ),
                                       ),
                                     ),
-                                    const Icon(
+                                    Icon(
                                       Icons.arrow_drop_down_sharp,
-                                      color: AppColors.black,
+                                      color: currenTheme
+                                          .textTheme.bodyText2!.color,
                                     ),
                                   ],
                                 ),
@@ -345,7 +344,7 @@ class _AddExpenseScreenState extends ConsumerState<AddExpenseScreen> {
                                 width: 150,
                                 padding: EdgeInsets.symmetric(horizontal: 24.w),
                                 decoration: BoxDecoration(
-                                  color: AppColors.textFillGrey,
+                                  color: currenTheme.cardColor,
                                   borderRadius: BorderRadius.circular(8.r),
                                 ),
                                 child: Row(
@@ -356,12 +355,12 @@ class _AddExpenseScreenState extends ConsumerState<AddExpenseScreen> {
                                       recurrences[_selectedRecurrenceIndex],
                                       style: TextStyle(
                                         fontSize: 14.sp,
-                                        color: AppColors.black,
+                                        color: currenTheme.textTheme.bodyText2!.color,
                                       ),
                                     ),
-                                    const Icon(
+                                     Icon(
                                       Icons.arrow_drop_down_sharp,
-                                      color: AppColors.black,
+                                      color: currenTheme.textTheme.bodyText2!.color,
                                     ),
                                   ],
                                 ),
@@ -404,7 +403,7 @@ class _AddExpenseScreenState extends ConsumerState<AddExpenseScreen> {
                           width: double.infinity,
                           padding: EdgeInsets.symmetric(horizontal: 24.w),
                           decoration: BoxDecoration(
-                            color: AppColors.textFillGrey,
+                            color: currenTheme.cardColor,
                             borderRadius: BorderRadius.circular(8.r),
                           ),
                           child: Row(
@@ -412,13 +411,13 @@ class _AddExpenseScreenState extends ConsumerState<AddExpenseScreen> {
                             children: [
                               Text(
                                 '${_selectedDate.month}/${_selectedDate.day}/${_selectedDate.year}  ${_selectedDate.hour}:${_selectedDate.minute}',
-                                style: const TextStyle(
-                                  color: AppColors.black,
+                                style:  TextStyle(
+                                  color: currenTheme.textTheme.bodyText2!.color,
                                 ),
                               ),
-                              const Icon(
+                               Icon(
                                 Icons.arrow_drop_down_sharp,
-                                color: AppColors.black,
+                                color: currenTheme.textTheme.bodyText2!.color,
                               ),
                             ],
                           ),

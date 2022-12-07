@@ -1,10 +1,12 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:exptrak/theme/palette.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:exptrak/shared/app_elements/app_colors.dart';
 
-class TextInputBox extends StatelessWidget {
+class TextInputBox extends ConsumerWidget {
   final double? height;
   final double? width;
   final String hintText;
@@ -15,7 +17,6 @@ class TextInputBox extends StatelessWidget {
   final TextInputType? keyboardType;
   final int? maxLines;
   final void Function(String)? onChanged;
-  final Color? textColor;
   const TextInputBox({
     Key? key,
     this.height,
@@ -28,11 +29,11 @@ class TextInputBox extends StatelessWidget {
     this.keyboardType,
     this.maxLines,
     this.onChanged,
-    this.textColor,
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final currenTheme = ref.watch(themeNotifierProvider);
     return SizedBox(
       height: height,
       width: width,
@@ -41,7 +42,7 @@ class TextInputBox extends StatelessWidget {
         maxLines: maxLines,
         style: TextStyle(
           fontSize: 13.sp,
-          color: textColor,
+          color: currenTheme.textTheme.bodyText2!.color,
         ),
         controller: controller,
         obscureText: obscuretext,
@@ -51,7 +52,7 @@ class TextInputBox extends StatelessWidget {
         decoration: InputDecoration(
           floatingLabelBehavior: FloatingLabelBehavior.always,
           filled: true,
-          fillColor: AppColors.textFillGrey,
+          fillColor: currenTheme.cardColor,
           contentPadding: EdgeInsets.fromLTRB(24.w, 20.h, 0, 20.h),
           helperText: " ",
           helperStyle: const TextStyle(fontSize: 0.0005),
@@ -70,17 +71,17 @@ class TextInputBox extends StatelessWidget {
           hintStyle: TextStyle(
             fontSize: 15.sp,
             fontWeight: FontWeight.w400,
-            color: AppColors.grey3,
+            color: currenTheme.textTheme.bodyText2!.color,
           ),
-          border: const OutlineInputBorder(
-            borderSide: BorderSide(color: AppColors.textBorderGrey),
+          border: OutlineInputBorder(
+            borderSide: BorderSide(color: currenTheme.cardColor),
           ),
           enabledBorder: OutlineInputBorder(
-            borderSide: const BorderSide(color: AppColors.textBorderGrey),
+            borderSide: BorderSide(color: currenTheme.cardColor),
             borderRadius: BorderRadius.circular(8.r),
           ),
           focusedBorder: OutlineInputBorder(
-            borderSide: const BorderSide(color: AppColors.textBorderGrey),
+            borderSide: BorderSide(color: currenTheme.cardColor),
             borderRadius: BorderRadius.circular(8.r),
           ),
         ),

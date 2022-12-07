@@ -1,3 +1,4 @@
+import 'package:exptrak/shared/app_elements/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -23,7 +24,7 @@ class Pallete {
           fontFamily: 'Sk-Modernist',
         ),
     scaffoldBackgroundColor: blackColor,
-    cardColor: greyColor,
+    cardColor: Colors.grey.withOpacity(0.05),
     appBarTheme: const AppBarTheme(
       backgroundColor: drawerColor,
       iconTheme: IconThemeData(
@@ -36,6 +37,7 @@ class Pallete {
     primaryColor: redColor,
     backgroundColor:
         blackColor, // will be used as alternative background color
+    
   );
 
   static var lightModeAppTheme = ThemeData.light().copyWith(
@@ -44,7 +46,7 @@ class Pallete {
           fontFamily: 'Sk-Modernist',
         ),
     scaffoldBackgroundColor: whiteColor,
-    cardColor: greyColor,
+    cardColor: AppColors.grey4.withOpacity(0.1),
     appBarTheme: const AppBarTheme(
       backgroundColor: whiteColor,
       elevation: 0,
