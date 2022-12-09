@@ -1,19 +1,35 @@
-import 'package:exptrak/features/auth/screens/splash_screen.dart';
-import 'package:exptrak/theme/palette.dart';
+// ignore_for_file: public_member_api_docs, sort_constructors_first
+
+import 'package:exptrak/features/auth/screens/auth_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-void main() {
+import 'package:exptrak/features/auth/screens/splash_screen.dart';
+import 'package:exptrak/features/navigation_bar/widgets/bottom_navigaion_bar.dart';
+import 'package:exptrak/theme/palette.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  // check shared prefs if pin has been set
+  SharedPreferences appPrefs = await SharedPreferences.getInstance();
+  final bool showHome = appPrefs.getBool('showHome') ?? false;
+
   runApp(
-    const ProviderScope(
-      child: MyApp(),
+    ProviderScope(
+      child: MyApp(showHome: showHome),
     ),
   );
 }
 
 class MyApp extends ConsumerWidget {
-  const MyApp({super.key});
+  final bool showHome;
+  const MyApp({
+    Key? key,
+    required this.showHome,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -29,7 +45,8 @@ class MyApp extends ConsumerWidget {
           home: child,
         );
       },
-      child: const SplashScreen(),
+      child: showHome ? const AuthScreen() : const SplashScreen(),
+      // child: const AuthScreen(),
     );
   }
 }

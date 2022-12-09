@@ -67,9 +67,8 @@ class _CategoriesScreenState extends ConsumerState<CategoriesScreen> {
   Widget build(BuildContext context) {
     final currenTheme = ref.watch(themeNotifierProvider);
     return Scaffold(
-      // backgroundColor: AppColors.black,
       appBar: AppBar(
-        // backgroundColor: AppColors.black,
+        centerTitle: true,
         title: Text(
           'Categories',
           style: TextStyle(
@@ -240,9 +239,8 @@ class _CategoriesScreenState extends ConsumerState<CategoriesScreen> {
                         ),
                         placeholder: "Category name",
                         placeholderStyle: TextStyle(
-                          color: currenTheme.textTheme.bodyText2!.color!,
-                          fontFamily: 'Sk-Modernist'
-                        ),
+                            color: currenTheme.textTheme.bodyText2!.color!,
+                            fontFamily: 'Sk-Modernist'),
                         controller: _textController,
                       ),
                     ),

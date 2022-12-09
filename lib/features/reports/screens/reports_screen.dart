@@ -105,7 +105,9 @@ class _ReportsScreenState extends ConsumerState<ReportsScreen> {
     return Scaffold(
       // backgroundColor: AppColors.black,
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         backgroundColor: currenTheme.backgroundColor,
+        centerTitle: true,
         title: Text(
           'Reports',
           style: TextStyle(

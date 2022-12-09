@@ -1,0 +1,112 @@
+Date : 2022-12-09 08:36:46
+Directory : /Users/user/Documents/Dev/Projects/exptrak/lib
+Total : 57 files,  4178 codes, 204 comments, 376 blanks, all 4758 lines
+
+Languages
++----------+------------+------------+------------+------------+------------+
+| language | files      | code       | comment    | blank      | total      |
++----------+------------+------------+------------+------------+------------+
+| Dart     |         55 |      4,176 |        204 |        376 |      4,756 |
+| JSON     |          2 |          2 |          0 |          0 |          2 |
++----------+------------+------------+------------+------------+------------+
+
+Directories
++----------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                                     | files      | code       | comment    | blank      | total      |
++----------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                                        |         57 |      4,178 |        204 |        376 |      4,758 |
+| assets                                                                                                   |          2 |          2 |          0 |          0 |          2 |
+| assets/lottie                                                                                            |          2 |          2 |          0 |          0 |          2 |
+| features                                                                                                 |         16 |      2,408 |        107 |        167 |      2,682 |
+| features/add_expense                                                                                     |          2 |        888 |         23 |         45 |        956 |
+| features/add_expense/screens                                                                             |          2 |        888 |         23 |         45 |        956 |
+| features/auth                                                                                            |          3 |        135 |          6 |         19 |        160 |
+| features/auth/screens                                                                                    |          3 |        135 |          6 |         19 |        160 |
+| features/expenses                                                                                        |          2 |        351 |          8 |         20 |        379 |
+| features/expenses/screens                                                                                |          2 |        351 |          8 |         20 |        379 |
+| features/navigation_bar                                                                                  |          2 |        110 |          5 |         12 |        127 |
+| features/navigation_bar/icons                                                                            |          1 |         24 |          1 |          3 |         28 |
+| features/navigation_bar/widgets                                                                          |          1 |         86 |          4 |          9 |         99 |
+| features/reports                                                                                         |          1 |        260 |          2 |         16 |        278 |
+| features/reports/screens                                                                                 |          1 |        260 |          2 |         16 |        278 |
+| features/search                                                                                          |          3 |        216 |         29 |         29 |        274 |
+| features/search/controllers                                                                              |          1 |          0 |         16 |          5 |         21 |
+| features/search/delegates                                                                                |          1 |        127 |         13 |         14 |        154 |
+| features/search/screens                                                                                  |          1 |         89 |          0 |         10 |         99 |
+| features/settings                                                                                        |          3 |        448 |         34 |         26 |        508 |
+| features/settings/screens                                                                                |          3 |        448 |         34 |         26 |        508 |
+| models                                                                                                   |          4 |        148 |          9 |         36 |        193 |
+| shared                                                                                                   |         32 |      1,494 |         84 |        154 |      1,732 |
+| shared/app_elements                                                                                      |          8 |        226 |         28 |         44 |        298 |
+| shared/components.dart                                                                                   |          4 |        216 |          1 |         20 |        237 |
+| shared/extensions                                                                                        |          3 |        130 |          0 |         25 |        155 |
+| shared/types                                                                                             |          2 |         39 |          0 |          3 |         42 |
+| shared/utils                                                                                             |          8 |        165 |         39 |         16 |        220 |
+| shared/widgets                                                                                           |          7 |        718 |         16 |         46 |        780 |
+| shared/widgets/charts                                                                                    |          3 |        356 |          0 |         22 |        378 |
+| theme                                                                                                    |          1 |         88 |          4 |         12 |        104 |
++----------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++----------------------------------------------------------------------------------------------------------+----------+------------+------------+------------+------------+
+| filename                                                                                                 | language | code       | comment    | blank      | total      |
++----------------------------------------------------------------------------------------------------------+----------+------------+------------+------------+------------+
+| /Users/user/Documents/Dev/Projects/exptrak/lib/assets/lottie/arrowDown.json                              | JSON     |          1 |          0 |          0 |          1 |
+| /Users/user/Documents/Dev/Projects/exptrak/lib/assets/lottie/empty.json                                  | JSON     |          1 |          0 |          0 |          1 |
+| /Users/user/Documents/Dev/Projects/exptrak/lib/features/add_expense/screens/add_expense_screen.dart      | Dart     |        518 |         13 |         25 |        556 |
+| /Users/user/Documents/Dev/Projects/exptrak/lib/features/add_expense/screens/add_screen.dart              | Dart     |        370 |         10 |         20 |        400 |
+| /Users/user/Documents/Dev/Projects/exptrak/lib/features/auth/screens/create_pin_screen.dart              | Dart     |         23 |          0 |          6 |         29 |
+| /Users/user/Documents/Dev/Projects/exptrak/lib/features/auth/screens/splash_screen.dart                  | Dart     |         65 |          3 |          7 |         75 |
+| /Users/user/Documents/Dev/Projects/exptrak/lib/features/auth/screens/tap_to_create_pin_screen.dart       | Dart     |         47 |          3 |          6 |         56 |
+| /Users/user/Documents/Dev/Projects/exptrak/lib/features/expenses/screens/expenses_screen.dart            | Dart     |        170 |          4 |         10 |        184 |
+| /Users/user/Documents/Dev/Projects/exptrak/lib/features/expenses/screens/fixing_expenses_screen.dart     | Dart     |        181 |          4 |         10 |        195 |
+| /Users/user/Documents/Dev/Projects/exptrak/lib/features/navigation_bar/icons/nav_bar_item.dart           | Dart     |         24 |          1 |          3 |         28 |
+| /Users/user/Documents/Dev/Projects/exptrak/lib/features/navigation_bar/widgets/bottom_navigaion_bar.dart | Dart     |         86 |          4 |          9 |         99 |
+| /Users/user/Documents/Dev/Projects/exptrak/lib/features/reports/screens/reports_screen.dart              | Dart     |        260 |          2 |         16 |        278 |
+| /Users/user/Documents/Dev/Projects/exptrak/lib/features/search/controllers/search_controller.dart        | Dart     |          0 |         16 |          5 |         21 |
+| /Users/user/Documents/Dev/Projects/exptrak/lib/features/search/delegates/search_expenses_delegate.dart   | Dart     |        127 |         13 |         14 |        154 |
+| /Users/user/Documents/Dev/Projects/exptrak/lib/features/search/screens/search_expenses_screen.dart       | Dart     |         89 |          0 |         10 |         99 |
+| /Users/user/Documents/Dev/Projects/exptrak/lib/features/settings/screens/categories_screen.dart          | Dart     |        250 |          3 |         12 |        265 |
+| /Users/user/Documents/Dev/Projects/exptrak/lib/features/settings/screens/report_screen.dart              | Dart     |         28 |          2 |          4 |         34 |
+| /Users/user/Documents/Dev/Projects/exptrak/lib/features/settings/screens/settings_acreen.dart            | Dart     |        170 |         29 |         10 |        209 |
+| /Users/user/Documents/Dev/Projects/exptrak/lib/main.dart                                                 | Dart     |         33 |          0 |          5 |         38 |
+| /Users/user/Documents/Dev/Projects/exptrak/lib/models/category.dart                                      | Dart     |         15 |          0 |          5 |         20 |
+| /Users/user/Documents/Dev/Projects/exptrak/lib/models/category.g.dart                                    | Dart     |         34 |          4 |         10 |         48 |
+| /Users/user/Documents/Dev/Projects/exptrak/lib/models/expense.dart                                       | Dart     |         29 |          1 |          6 |         36 |
+| /Users/user/Documents/Dev/Projects/exptrak/lib/models/expense.g.dart                                     | Dart     |         70 |          4 |         15 |         89 |
+| /Users/user/Documents/Dev/Projects/exptrak/lib/realm.dart                                                | Dart     |          5 |          0 |          2 |          7 |
+| /Users/user/Documents/Dev/Projects/exptrak/lib/shared/app_elements/app_colors.dart                       | Dart     |         27 |          1 |          4 |         32 |
+| /Users/user/Documents/Dev/Projects/exptrak/lib/shared/app_elements/app_constants.dart                    | Dart     |          9 |          0 |          4 |         13 |
+| /Users/user/Documents/Dev/Projects/exptrak/lib/shared/app_elements/app_icons.dart                        | Dart     |         25 |          6 |          6 |         37 |
+| /Users/user/Documents/Dev/Projects/exptrak/lib/shared/app_elements/app_images.dart                       | Dart     |         17 |          5 |          5 |         27 |
+| /Users/user/Documents/Dev/Projects/exptrak/lib/shared/app_elements/app_text_styles.dart                  | Dart     |          2 |          0 |          1 |          3 |
+| /Users/user/Documents/Dev/Projects/exptrak/lib/shared/app_elements/app_texts.dart                        | Dart     |        109 |         16 |         16 |        141 |
+| /Users/user/Documents/Dev/Projects/exptrak/lib/shared/app_elements/app_utils.dart                        | Dart     |          8 |          0 |          2 |         10 |
+| /Users/user/Documents/Dev/Projects/exptrak/lib/shared/app_elements/navigation.dart                       | Dart     |         29 |          0 |          6 |         35 |
+| /Users/user/Documents/Dev/Projects/exptrak/lib/shared/components.dart/category_badge.dart                | Dart     |         28 |          1 |          4 |         33 |
+| /Users/user/Documents/Dev/Projects/exptrak/lib/shared/components.dart/day_expenses.dart                  | Dart     |         80 |          0 |          4 |         84 |
+| /Users/user/Documents/Dev/Projects/exptrak/lib/shared/components.dart/expense_row.dart                   | Dart     |         62 |          0 |          4 |         66 |
+| /Users/user/Documents/Dev/Projects/exptrak/lib/shared/components.dart/expenses_list.dart                 | Dart     |         46 |          0 |          8 |         54 |
+| /Users/user/Documents/Dev/Projects/exptrak/lib/shared/extensions/date_extensions.dart                    | Dart     |         47 |          0 |         10 |         57 |
+| /Users/user/Documents/Dev/Projects/exptrak/lib/shared/extensions/expense_extensions.dart                 | Dart     |         78 |          0 |         15 |         93 |
+| /Users/user/Documents/Dev/Projects/exptrak/lib/shared/extensions/number_extensions.dart                  | Dart     |          5 |          0 |          0 |          5 |
+| /Users/user/Documents/Dev/Projects/exptrak/lib/shared/types/period.dart                                  | Dart     |         31 |          0 |          3 |         34 |
+| /Users/user/Documents/Dev/Projects/exptrak/lib/shared/types/recurrence.dart                              | Dart     |          8 |          0 |          0 |          8 |
+| /Users/user/Documents/Dev/Projects/exptrak/lib/shared/utils/alert_dialog.dart                            | Dart     |         30 |          5 |          1 |         36 |
+| /Users/user/Documents/Dev/Projects/exptrak/lib/shared/utils/charts.dart                                  | Dart     |         15 |          0 |          2 |         17 |
+| /Users/user/Documents/Dev/Projects/exptrak/lib/shared/utils/error_handling.dart                          | Dart     |          0 |         22 |          3 |         25 |
+| /Users/user/Documents/Dev/Projects/exptrak/lib/shared/utils/failure.dart                                 | Dart     |          4 |          0 |          2 |          6 |
+| /Users/user/Documents/Dev/Projects/exptrak/lib/shared/utils/info.dart                                    | Dart     |         87 |          0 |          2 |         89 |
+| /Users/user/Documents/Dev/Projects/exptrak/lib/shared/utils/picker.dart                                  | Dart     |         18 |          3 |          2 |         23 |
+| /Users/user/Documents/Dev/Projects/exptrak/lib/shared/utils/type_defs.dart                               | Dart     |          0 |          4 |          1 |          5 |
+| /Users/user/Documents/Dev/Projects/exptrak/lib/shared/utils/utils.dart                                   | Dart     |         11 |          5 |          3 |         19 |
+| /Users/user/Documents/Dev/Projects/exptrak/lib/shared/widgets/button.dart                                | Dart     |        161 |          2 |         10 |        173 |
+| /Users/user/Documents/Dev/Projects/exptrak/lib/shared/widgets/charts/monthly_charts.dart                 | Dart     |         91 |          0 |          9 |        100 |
+| /Users/user/Documents/Dev/Projects/exptrak/lib/shared/widgets/charts/weekly_charts.dart                  | Dart     |        142 |          0 |          6 |        148 |
+| /Users/user/Documents/Dev/Projects/exptrak/lib/shared/widgets/charts/yearly_charts.dart                  | Dart     |        123 |          0 |          7 |        130 |
+| /Users/user/Documents/Dev/Projects/exptrak/lib/shared/widgets/loader.dart                                | Dart     |         12 |          0 |          2 |         14 |
+| /Users/user/Documents/Dev/Projects/exptrak/lib/shared/widgets/spacer.dart                                | Dart     |         17 |          0 |          2 |         19 |
+| /Users/user/Documents/Dev/Projects/exptrak/lib/shared/widgets/text_input.dart                            | Dart     |        172 |         14 |         10 |        196 |
+| /Users/user/Documents/Dev/Projects/exptrak/lib/theme/palette.dart                                        | Dart     |         88 |          4 |         12 |        104 |
+| Total                                                                                                    |          |      4,178 |        204 |        376 |      4,758 |
++----------------------------------------------------------------------------------------------------------+----------+------------+------------+------------+------------+

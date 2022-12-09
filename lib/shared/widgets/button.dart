@@ -32,7 +32,7 @@ class BButton extends StatelessWidget {
           ),
           elevation: 0,
           shadowColor: Colors.transparent,
-          backgroundColor: AppColors.purple,
+          backgroundColor: AppColors.midPurple,
         ),
         child: Center(
           child: Text(

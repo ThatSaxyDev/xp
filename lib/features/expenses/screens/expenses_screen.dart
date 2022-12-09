@@ -54,10 +54,11 @@ class _ExpensesScreenState extends ConsumerState<ExpensesScreen> {
   Widget build(BuildContext context) {
     final currenTheme = ref.watch(themeNotifierProvider);
     return Scaffold(
-      // backgroundColor: AppColors.black,
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         elevation: 0,
         backgroundColor: currenTheme.backgroundColor,
+        centerTitle: true,
         title: Text(
           'Expenses',
           style: TextStyle(

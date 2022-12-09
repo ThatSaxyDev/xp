@@ -100,7 +100,9 @@ class _AddExpenseScreenState extends ConsumerState<AddExpenseScreen> {
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: Scaffold(
         appBar: AppBar(
+          automaticallyImplyLeading: false,
           backgroundColor: currenTheme.backgroundColor,
+          centerTitle: true,
           title: Text(
             'Add Expense',
             style: TextStyle(
@@ -117,15 +119,16 @@ class _AddExpenseScreenState extends ConsumerState<AddExpenseScreen> {
               key: _formKey,
               child: Column(
                 children: [
+                  Spc(h: 20.h),
                   // amount input
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Amount 🤑',
+                        'Amount',
                         style: TextStyle(
-                          fontSize: 16.sp,
-                          fontWeight: FontWeight.bold,
+                          fontSize: 14.6.sp,
+                          fontWeight: FontWeight.w500,
                         ),
                       ),
                       Spc(h: 10.h),
@@ -150,16 +153,16 @@ class _AddExpenseScreenState extends ConsumerState<AddExpenseScreen> {
                     ],
                   ),
 
-                  Spc(h: 20.h),
+                  Spc(h: 25.h),
                   // note
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Note 📝',
+                        'Note',
                         style: TextStyle(
-                          fontSize: 16.sp,
-                          fontWeight: FontWeight.bold,
+                          fontSize: 14.6.sp,
+                          fontWeight: FontWeight.w500,
                         ),
                       ),
                       Spc(h: 10.h),
@@ -178,7 +181,7 @@ class _AddExpenseScreenState extends ConsumerState<AddExpenseScreen> {
                     ],
                   ),
 
-                  Spc(h: 20.h),
+                  Spc(h: 25.h),
 
                   SizedBox(
                     height: 95,
@@ -190,10 +193,10 @@ class _AddExpenseScreenState extends ConsumerState<AddExpenseScreen> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              'Category 🤔',
+                              'Category',
                               style: TextStyle(
-                                fontSize: 16.sp,
-                                fontWeight: FontWeight.bold,
+                                fontSize: 14.6.sp,
+                                fontWeight: FontWeight.w500,
                               ),
                             ),
                             Spc(h: 10.h),
@@ -302,10 +305,10 @@ class _AddExpenseScreenState extends ConsumerState<AddExpenseScreen> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              'Recurrence 🔁',
+                              'Recurrence',
                               style: TextStyle(
-                                fontSize: 16.sp,
-                                fontWeight: FontWeight.bold,
+                                fontSize: 14.6.sp,
+                                fontWeight: FontWeight.w500,
                               ),
                             ),
                             Spc(h: 10.h),
@@ -355,12 +358,14 @@ class _AddExpenseScreenState extends ConsumerState<AddExpenseScreen> {
                                       recurrences[_selectedRecurrenceIndex],
                                       style: TextStyle(
                                         fontSize: 14.sp,
-                                        color: currenTheme.textTheme.bodyText2!.color,
+                                        color: currenTheme
+                                            .textTheme.bodyText2!.color,
                                       ),
                                     ),
-                                     Icon(
+                                    Icon(
                                       Icons.arrow_drop_down_sharp,
-                                      color: currenTheme.textTheme.bodyText2!.color,
+                                      color: currenTheme
+                                          .textTheme.bodyText2!.color,
                                     ),
                                   ],
                                 ),
@@ -372,16 +377,16 @@ class _AddExpenseScreenState extends ConsumerState<AddExpenseScreen> {
                     ),
                   ),
 
-                  Spc(h: 20.h),
+                  Spc(h: 25.h),
                   // date
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Date 📆',
+                        'Date',
                         style: TextStyle(
-                          fontSize: 16.sp,
-                          fontWeight: FontWeight.bold,
+                          fontSize: 14.6.sp,
+                          fontWeight: FontWeight.w500,
                         ),
                       ),
                       Spc(h: 10.h),
@@ -411,11 +416,11 @@ class _AddExpenseScreenState extends ConsumerState<AddExpenseScreen> {
                             children: [
                               Text(
                                 '${_selectedDate.month}/${_selectedDate.day}/${_selectedDate.year}  ${_selectedDate.hour}:${_selectedDate.minute}',
-                                style:  TextStyle(
+                                style: TextStyle(
                                   color: currenTheme.textTheme.bodyText2!.color,
                                 ),
                               ),
-                               Icon(
+                              Icon(
                                 Icons.arrow_drop_down_sharp,
                                 color: currenTheme.textTheme.bodyText2!.color,
                               ),

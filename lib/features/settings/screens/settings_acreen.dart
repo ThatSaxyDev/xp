@@ -26,8 +26,10 @@ class SettingsScreen extends ConsumerWidget {
     return Scaffold(
       // backgroundColor: AppColors.black,
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         elevation: 0,
         backgroundColor: currenTheme.backgroundColor,
+        centerTitle: true,
         title: Text(
           'Settings',
           style: TextStyle(

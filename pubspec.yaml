@@ -51,6 +51,8 @@ dependencies:
   fluttertoast: ^8.1.1
   lottie: ^2.0.0
   flutter_animate: ^2.0.1
+  pinput: ^2.2.16
+  local_hero: ^0.2.0
 
 dev_dependencies:
   flutter_test:

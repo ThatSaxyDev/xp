@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:exptrak/features/auth/screens/tap_to_create_pin_screen.dart';
 import 'package:exptrak/features/navigation_bar/widgets/bottom_navigaion_bar.dart';
 import 'package:exptrak/shared/app_elements/app_colors.dart';
 import 'package:exptrak/shared/app_elements/app_images.dart';
@@ -28,7 +29,7 @@ class _SplashScreenState extends ConsumerState<SplashScreen>
     Timer(const Duration(milliseconds: 4000), () {
       Navigator.of(context).pushAndRemoveUntil(
           MaterialPageRoute(
-            builder: (context) => const BottomNavBar(),
+            builder: (context) => const TapToCreatePinScreen(),
           ),
           (route) => false);
     });

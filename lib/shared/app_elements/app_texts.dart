@@ -5,6 +5,9 @@ abstract class AppTexts {
   //naira symbol
   static const String naira = '₦';
 
+static const String obsureCharacter = '⬤';
+ 
+
   // onboarding
   static const String onboardingDummy =
       'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem';

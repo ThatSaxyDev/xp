@@ -53,7 +53,7 @@ class _BottomNavBarState extends ConsumerState<BottomNavBar> {
                     });
                   },
                   icon: UniconsLine.money_stack,
-                  color: _page == 0 ? AppColors.purple : AppColors.grey,
+                  color: _page == 0 ? AppColors.midPurple : AppColors.grey,
                 ),
 
                 // transfer
@@ -64,7 +64,7 @@ class _BottomNavBarState extends ConsumerState<BottomNavBar> {
                     });
                   },
                   icon: UniconsLine.graph_bar,
-                  color: _page == 1 ? AppColors.purple : AppColors.grey,
+                  color: _page == 1 ? AppColors.midPurple : AppColors.grey,
                 ),
 
                 // history
@@ -75,7 +75,7 @@ class _BottomNavBarState extends ConsumerState<BottomNavBar> {
                     });
                   },
                   icon: UniconsLine.plus_circle,
-                  color: _page == 2 ? AppColors.purple : AppColors.grey,
+                  color: _page == 2 ? AppColors.midPurple : AppColors.grey,
                 ),
 
                 // settings
@@ -86,7 +86,7 @@ class _BottomNavBarState extends ConsumerState<BottomNavBar> {
                     });
                   },
                   icon: UniconsLine.setting,
-                  color: _page == 3 ? AppColors.purple : AppColors.grey,
+                  color: _page == 3 ? AppColors.midPurple : AppColors.grey,
                 ),
               ],
             ),
