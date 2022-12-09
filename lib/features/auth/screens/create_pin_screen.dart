@@ -74,6 +74,7 @@ class _CreatePinScreenState extends ConsumerState<CreatePinScreen>
   @override
   Widget build(BuildContext context) {
     final currentTheme = ref.watch(themeNotifierProvider);
+    final navigator = Navigator.of(context);
     return Scaffold(
       backgroundColor: currentTheme.backgroundColor,
       appBar: AppBar(
@@ -104,11 +105,16 @@ class _CreatePinScreenState extends ConsumerState<CreatePinScreen>
                       onCompleted: (pin) async {
                         if (pin == _pin) {
                           // save in shared prefs
-                          final SharedPreferences pref = await SharedPreferences.getInstance();
+                          final SharedPreferences pref =
+                              await SharedPreferences.getInstance();
 
+                          // set pin in shared prefs
+                          pref.setString('pin', pin);
+
+                          // set bool for deciding how to start app
                           pref.setBool('showHome', true);
 
-                           Navigator.of(context).push(
+                          navigator.push(
                             MaterialPageRoute(
                               builder: ((context) {
                                 return const BottomNavBar();
@@ -121,16 +127,16 @@ class _CreatePinScreenState extends ConsumerState<CreatePinScreen>
                   : PinInputBox(
                       controller: _pinController,
                       onCompleted: (pin) {
-                        if (pin == _pin) {
-                          Navigator.of(context).pushAndRemoveUntil(
-                            MaterialPageRoute(
-                              builder: ((context) {
-                                return const BottomNavBar();
-                              }),
-                            ),
-                            (route) => false,
-                          );
-                        }
+                        // if (pin == _pin) {
+                        //   Navigator.of(context).pushAndRemoveUntil(
+                        //     MaterialPageRoute(
+                        //       builder: ((context) {
+                        //         return const BottomNavBar();
+                        //       }),
+                        //     ),
+                        //     (route) => false,
+                        //   );
+                        // }
                       },
                     ),
             ),
