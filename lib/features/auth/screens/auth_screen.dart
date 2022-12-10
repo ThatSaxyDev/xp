@@ -93,17 +93,17 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
 
                   // get pin from shared prefs
                   String pinFromPrefs = prefs.getString('pin') ?? '';
+                  log(pinFromPrefs);
 
                   if (pin == pinFromPrefs) {
-                    navigator.push(
-                      MaterialPageRoute(
-                        builder: ((context) {
-                          return const BottomNavBar();
-                        }),
-                      ),
-                    );
+                    navigator.pushAndRemoveUntil(
+                        MaterialPageRoute(
+                          builder: (context) => const BottomNavBar(),
+                        ),
+                        (route) => false);
                   } else {
                     _showErrorToast(ref);
+                    _pinController.clear();
                   }
                 },
               ),

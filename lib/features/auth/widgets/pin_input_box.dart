@@ -19,6 +19,7 @@ class PinInputBox extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     // final currentTheme = ref.watch(themeNotifierProvider);
     return Pinput(
+      showCursor: false,
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       obscuringCharacter: AppTexts.obsureCharacter,
       obscureText: true,

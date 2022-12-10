@@ -1,5 +1,6 @@
+import 'package:exptrak/features/auth/screens/tap_to_create_pin_screen.dart';
 import 'package:exptrak/features/settings/screens/categories_screen.dart';
-import 'package:exptrak/features/settings/screens/report_screen.dart';
+import 'package:exptrak/features/settings/screens/change_pin_screen.dart';
 import 'package:exptrak/models/category.dart';
 import 'package:exptrak/models/expense.dart';
 import 'package:exptrak/realm.dart';
@@ -12,6 +13,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SettingsScreen extends ConsumerWidget {
   const SettingsScreen({super.key});
@@ -23,6 +25,7 @@ class SettingsScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final currenTheme = ref.watch(themeNotifierProvider);
+    final navigator = Navigator.of(context);
     return Scaffold(
       // backgroundColor: AppColors.black,
       appBar: AppBar(
@@ -60,12 +63,11 @@ class SettingsScreen extends ConsumerWidget {
                               );
                               break;
 
-                            case 'Report a bug':
+                            case 'Change pin':
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) =>
-                                      const ReportABugScreen(),
+                                  builder: (context) => const ChangePinScreen(),
                                 ),
                               );
                               break;
@@ -73,11 +75,21 @@ class SettingsScreen extends ConsumerWidget {
                             case 'Erase all data':
                               showAlertDialog(
                                 context,
-                                () {
+                                () async {
+                                  SharedPreferences prefs =
+                                      await SharedPreferences.getInstance();
+                                  prefs.remove('pin');
+                                  prefs.remove('showHome');
                                   realm.write(() {
                                     realm.deleteAll<Expense>();
                                     realm.deleteAll<Category>();
                                   });
+                                  navigator.pushAndRemoveUntil(
+                                      MaterialPageRoute(
+                                        builder: (context) =>
+                                            const TapToCreatePinScreen(),
+                                      ),
+                                      (route) => false);
                                 },
                                 "Are you sure?",
                                 "This action cannot be undone.",
@@ -175,7 +187,7 @@ class Item {
 
 const items = [
   Item('Categories', false),
-  Item('Report a bug', false),
+  Item('Change pin', false),
   Item('Erase all data', true),
 ];
 
