@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:developer';
 
 import 'package:exptrak/features/auth/screens/confirm_pin_screen.dart';
+import 'package:exptrak/features/auth/widgets/enable_biometrics_modal.dart';
 import 'package:exptrak/features/auth/widgets/numpad.dart';
 import 'package:exptrak/features/auth/widgets/pin_input_box.dart';
 import 'package:exptrak/shared/app_elements/app_colors.dart';
@@ -18,6 +19,7 @@ import 'package:exptrak/shared/widgets/spacer.dart';
 import 'package:exptrak/shared/widgets/text_input.dart';
 import 'package:exptrak/theme/palette.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:local_auth/local_auth.dart';
 import 'package:local_hero/local_hero.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -36,11 +38,14 @@ class _CreatePinScreenState extends ConsumerState<CreatePinScreen>
   late final AnimationController _modeChangeController;
   late TextEditingController _pinController;
   late TextEditingController _confirmPinController;
-   late FToast fToast;
+  late FToast fToast;
   String _pin = '';
   // String _confirmPin = '';
 
   bool showCOnfirmScreen = false;
+
+  // local auth
+  var localAuth = LocalAuthentication();
 
   @override
   void initState() {
@@ -124,7 +129,7 @@ class _CreatePinScreenState extends ConsumerState<CreatePinScreen>
                             const Duration(milliseconds: 550),
                             () => HapticFeedback.heavyImpact(),
                           );
-                          HapticFeedback.heavyImpact();
+                          // HapticFeedback.heavyImpact();
                           // save in shared prefs
                           final SharedPreferences pref =
                               await SharedPreferences.getInstance();
@@ -134,7 +139,28 @@ class _CreatePinScreenState extends ConsumerState<CreatePinScreen>
 
                           // set bool for deciding how to start app
                           pref.setBool('showHome', true);
-                          navigateToHome();
+
+                          // check biometrics
+                          // check if biometric auth is supported
+                          if (await localAuth.canCheckBiometrics) {
+                            // Ask for enable biometric auth
+                            showModalBottomSheet<void>(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return EnableLocalAuthModalBottomSheet(
+                                  yes: () {
+                                    pref.setBool('biometricEnabled', true);
+                                    navigateToHome();
+                                  },
+                                  no: () {
+                                    pref.setBool('biometricEnabled', false);
+                                    navigateToHome();
+                                  },
+                                );
+                              },
+                            );
+                          }
+                          // navigateToHome();
                         } else {
                           _showErrorToast(ref);
                           HapticFeedback.vibrate();

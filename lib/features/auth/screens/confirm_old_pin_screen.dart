@@ -4,6 +4,7 @@ import 'dart:developer';
 import 'package:exptrak/features/auth/widgets/numpad.dart';
 import 'package:exptrak/features/auth/widgets/pin_input_box.dart';
 import 'package:exptrak/features/navigation_bar/widgets/bottom_navigaion_bar.dart';
+import 'package:exptrak/features/settings/screens/change_pin_screen.dart';
 import 'package:exptrak/shared/app_elements/app_colors.dart';
 import 'package:exptrak/shared/widgets/spacer.dart';
 import 'package:exptrak/theme/palette.dart';
@@ -20,14 +21,14 @@ import 'package:pinput/pinput.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:unicons/unicons.dart';
 
-class AuthScreen extends ConsumerStatefulWidget {
-  const AuthScreen({super.key});
+class ConfirmOldPinScreen extends ConsumerStatefulWidget {
+  const ConfirmOldPinScreen({super.key});
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() => _AuthScreenState();
+  ConsumerState<ConsumerStatefulWidget> createState() => _ConfirmOldPinScreenState();
 }
 
-class _AuthScreenState extends ConsumerState<AuthScreen>
+class _ConfirmOldPinScreenState extends ConsumerState<ConfirmOldPinScreen>
     with TickerProviderStateMixin {
   late final AnimationController _lottieController;
 
@@ -150,11 +151,12 @@ class _AuthScreenState extends ConsumerState<AuthScreen>
                     });
 
                     Timer(const Duration(milliseconds: 1000), () {
-                      navigator.pushAndRemoveUntil(
+                      navigator.push(
                           MaterialPageRoute(
-                            builder: (context) => const BottomNavBar(),
+                            builder: (context) => const ChangePinScreen(),
                           ),
-                          (route) => false);
+                          // (route) => false
+                          );
                     });
                   } else {
                     log(pinFromPrefs);

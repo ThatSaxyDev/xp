@@ -1,4 +1,6 @@
+import 'package:exptrak/features/auth/screens/confirm_old_pin_screen.dart';
 import 'package:exptrak/features/auth/screens/tap_to_create_pin_screen.dart';
+import 'package:exptrak/features/auth/widgets/enable_biometrics_modal.dart';
 import 'package:exptrak/features/settings/screens/categories_screen.dart';
 import 'package:exptrak/features/settings/screens/change_pin_screen.dart';
 import 'package:exptrak/models/category.dart';
@@ -10,6 +12,7 @@ import 'package:exptrak/shared/utils/alert_dialog.dart';
 import 'package:exptrak/shared/widgets/spacer.dart';
 import 'package:exptrak/theme/palette.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
@@ -67,8 +70,36 @@ class SettingsScreen extends ConsumerWidget {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => const ChangePinScreen(),
+                                  builder: (context) =>
+                                      const ConfirmOldPinScreen(),
                                 ),
+                              );
+                              break;
+
+                            case 'Enable biometrics':
+                              showModalBottomSheet<void>(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(40.r),
+                                ),
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return EnableLocalAuthModalBottomSheet(
+                                    yes: () async {
+                                      HapticFeedback.mediumImpact();
+                                      final SharedPreferences pref =
+                                          await SharedPreferences.getInstance();
+
+                                      pref.setBool('biometricEnabled', true);
+                                    },
+                                    no: () async {
+                                      HapticFeedback.mediumImpact();
+                                      final SharedPreferences pref =
+                                          await SharedPreferences.getInstance();
+
+                                      pref.setBool('biometricEnabled', false);
+                                    },
+                                  );
+                                },
                               );
                               break;
 
@@ -80,6 +111,7 @@ class SettingsScreen extends ConsumerWidget {
                                       await SharedPreferences.getInstance();
                                   prefs.remove('pin');
                                   prefs.remove('showHome');
+                                  prefs.remove('biometricEnabled');
                                   realm.write(() {
                                     realm.deleteAll<Expense>();
                                     realm.deleteAll<Category>();
@@ -188,34 +220,6 @@ class Item {
 const items = [
   Item('Categories', false),
   Item('Change pin', false),
+  Item('Enable biometrics', false),
   Item('Erase all data', true),
 ];
-
-// void eraseData(BuildContext context) {
-//   showDialog(
-//       context: context,
-//       builder: (BuildContext ctx) {
-//         return AlertDialog(
-//           title: const Text('Please Confirm'),
-//           content: const Text('Are you sure you want to erase all data?'),
-//           actions: [
-//             TextButton(
-//               onPressed: () {
-//                 Navigator.of(context).pop();
-//               },
-//               child: const Text(
-//                 'Yes',
-//               ),
-//             ),
-//             TextButton(
-//               onPressed: () {
-//                 Navigator.of(context).pop();
-//               },
-//               child: const Text(
-//                 'No',
-//               ),
-//             ),
-//           ],
-//         );
-//       });
-// }

@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:developer';
 
 import 'package:exptrak/features/auth/widgets/pin_input_box.dart';
+import 'package:exptrak/features/navigation_bar/widgets/bottom_navigaion_bar.dart';
 import 'package:exptrak/shared/app_elements/app_colors.dart';
 import 'package:exptrak/shared/widgets/spacer.dart';
 import 'package:exptrak/theme/palette.dart';
@@ -74,7 +75,12 @@ class _ChangePinScreenState extends ConsumerState<ChangePinScreen>
   void pop() {
     Timer(
       const Duration(milliseconds: 1000),
-      () => Navigator.of(context).pop(),
+      () => Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const BottomNavBar(),
+          ),
+          (route) => false),
     );
   }
 
@@ -85,6 +91,7 @@ class _ChangePinScreenState extends ConsumerState<ChangePinScreen>
     return Scaffold(
       backgroundColor: currentTheme.backgroundColor,
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         foregroundColor: AppColors.grey,
         backgroundColor: currentTheme.backgroundColor,
         elevation: 0,
