@@ -9,6 +9,7 @@ import 'package:exptrak/realm.dart';
 import 'package:exptrak/shared/app_elements/app_colors.dart';
 import 'package:exptrak/shared/app_elements/app_images.dart';
 import 'package:exptrak/shared/utils/alert_dialog.dart';
+import 'package:exptrak/shared/utils/utils.dart';
 import 'package:exptrak/shared/widgets/spacer.dart';
 import 'package:exptrak/theme/palette.dart';
 import 'package:flutter/material.dart';
@@ -90,6 +91,7 @@ class SettingsScreen extends ConsumerWidget {
                                           await SharedPreferences.getInstance();
 
                                       pref.setBool('biometricEnabled', true);
+                                      showSnackBar(context, 'Biometrics enabled');
                                     },
                                     no: () async {
                                       HapticFeedback.mediumImpact();
@@ -97,6 +99,7 @@ class SettingsScreen extends ConsumerWidget {
                                           await SharedPreferences.getInstance();
 
                                       pref.setBool('biometricEnabled', false);
+                                       showSnackBar(context, 'Biometrics disabled');
                                     },
                                   );
                                 },
