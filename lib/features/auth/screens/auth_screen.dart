@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:developer';
 
 import 'package:exptrak/features/auth/widgets/numpad.dart';
@@ -7,11 +8,14 @@ import 'package:exptrak/shared/app_elements/app_colors.dart';
 import 'package:exptrak/shared/widgets/spacer.dart';
 import 'package:exptrak/theme/palette.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:local_hero/local_hero.dart';
+import 'package:lottie/lottie.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
+import 'package:pinput/pinput.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:unicons/unicons.dart';
 
@@ -22,14 +26,19 @@ class AuthScreen extends ConsumerStatefulWidget {
   ConsumerState<ConsumerStatefulWidget> createState() => _AuthScreenState();
 }
 
-class _AuthScreenState extends ConsumerState<AuthScreen> {
+class _AuthScreenState extends ConsumerState<AuthScreen>
+    with TickerProviderStateMixin {
+  late final AnimationController _lottieController;
+
   late TextEditingController _pinController;
   late FToast fToast;
+  bool isPinCorrect = true;
   // String _pin = '';
 
   @override
   void initState() {
     _pinController = TextEditingController();
+    _lottieController = AnimationController(vsync: this);
     fToast = FToast();
     fToast.init(context);
     super.initState();
@@ -38,6 +47,7 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
   @override
   void dispose() {
     _pinController.dispose();
+    _lottieController.dispose();
     super.dispose();
   }
 
@@ -67,19 +77,35 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
             // ),
 
             //
-            CircleAvatar(
-              radius: 45.w,
-              backgroundColor: AppColors.midPurple,
-              child: CircleAvatar(
-                radius: 39.w,
-                backgroundColor: currentTheme.backgroundColor,
-                child: Icon(
-                  UniconsSolid.lock,
-                  color: AppColors.midPurple,
-                  size: 27.sp,
-                ),
+            // CircleAvatar(
+            //   radius: 45.w,
+            //   backgroundColor: isPinCorrect
+            //       ? currentTheme.textTheme.bodyText2!.color
+            //       : AppColors.midPurple,
+            //   child: CircleAvatar(
+            //     radius: 39.w,
+            //     backgroundColor: currentTheme.backgroundColor,
+            //     child: Icon(
+            //       UniconsSolid.lock,
+            //       color: isPinCorrect
+            //           ? currentTheme.textTheme.bodyText2!.color
+            //           : AppColors.midPurple,
+            //       size: 27.sp,
+            //     ),
+            //   ),
+            // ),
+
+            SizedBox(
+              height: 90.h,
+              child: Lottie.asset(
+                'lib/assets/lottie/newunlock.json',
+                repeat: false,
+                controller: _lottieController,
+                onLoaded: (composition) =>
+                    _lottieController..duration = composition.duration,
               ),
             ),
+
             Spc(h: 70.h),
 
             // input boxes
@@ -96,13 +122,27 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
                   log(pinFromPrefs);
 
                   if (pin == pinFromPrefs) {
-                    navigator.pushAndRemoveUntil(
-                        MaterialPageRoute(
-                          builder: (context) => const BottomNavBar(),
-                        ),
-                        (route) => false);
+                    _lottieController.forward();
+                    Timer(const Duration(milliseconds: 550), () {
+                      HapticFeedback.heavyImpact();
+                    });
+                    
+
+                    Timer(const Duration(milliseconds: 1000), () {
+                      navigator.pushAndRemoveUntil(
+                          MaterialPageRoute(
+                            builder: (context) => const BottomNavBar(),
+                          ),
+                          (route) => false);
+                    });
                   } else {
+                    log(pinFromPrefs);
                     _showErrorToast(ref);
+                    HapticFeedback.vibrate();
+
+                    setState(() {
+                      isPinCorrect = false;
+                    });
                     _pinController.clear();
                   }
                 },
@@ -133,13 +173,14 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
   _showErrorToast(WidgetRef ref) {
     final currentTheme = ref.watch(themeNotifierProvider);
     Widget toast = Container(
+      height: 45.h,
       padding: const EdgeInsets.symmetric(
         horizontal: 24.0,
-        vertical: 12.0,
+        vertical: 5.0,
       ),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(25.0),
-          color: AppColors.primaryRed.withOpacity(0.6)),
+          color: AppColors.primaryRed),
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -151,7 +192,7 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
             width: 12.w,
           ),
           Text(
-            'Incorrect pin! 🥶',
+            'Incorrect pin!🥶',
             style: TextStyle(
               color: currentTheme.backgroundColor,
             ),
@@ -165,7 +206,7 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
         toastDuration: const Duration(seconds: 2),
         positionedToastBuilder: (context, child) {
           return Positioned(
-            top: 100.h,
+            top: 50.h,
             left: 80.w,
             child: child,
           );

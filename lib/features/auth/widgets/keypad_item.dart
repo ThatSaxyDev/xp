@@ -1,5 +1,6 @@
 import 'package:exptrak/shared/app_elements/app_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:local_hero/local_hero.dart';
 
@@ -21,6 +22,7 @@ class KeyPadItem extends StatelessWidget {
         width: 72.w,
         child: ElevatedButton(
           onPressed: () {
+            HapticFeedback.lightImpact();
             controller.text += number;
           },
           style: ElevatedButton.styleFrom(

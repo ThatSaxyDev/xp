@@ -1,5 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 import 'package:unicons/unicons.dart';
@@ -67,7 +68,10 @@ class NumPad extends StatelessWidget {
               height: 88.h,
               width: 88.w,
               child: ElevatedButton(
-                onPressed: () => delete(),
+                onPressed: () {
+                  HapticFeedback.lightImpact();
+                  delete();
+                },
                 style: ElevatedButton.styleFrom(
                   shape: RoundedRectangleBorder(
                     side: BorderSide.none,
@@ -183,7 +187,10 @@ class NumPadAlt extends StatelessWidget {
               height: 88.h,
               width: 88.w,
               child: ElevatedButton(
-                onPressed: () => delete(),
+                onPressed: () {
+                  HapticFeedback.lightImpact();
+                  delete();
+                },
                 style: ElevatedButton.styleFrom(
                   shape: RoundedRectangleBorder(
                     side: BorderSide.none,
@@ -203,7 +210,7 @@ class NumPadAlt extends StatelessWidget {
                 ),
               ),
             ),
-           KeyPadItem(number: nums[9], controller: controller),
+            KeyPadItem(number: nums[9], controller: controller),
             // showTick
             //     ? SizedBox(
             //         height: 88.h,
@@ -300,7 +307,10 @@ class NumPadScramble extends StatelessWidget {
               height: 88.h,
               width: 88.w,
               child: ElevatedButton(
-                onPressed: () => delete(),
+                onPressed: () {
+                  HapticFeedback.lightImpact();
+                  delete();
+                },
                 style: ElevatedButton.styleFrom(
                   shape: RoundedRectangleBorder(
                     side: BorderSide.none,

@@ -4,6 +4,7 @@ import 'package:collection/collection.dart';
 import 'package:exptrak/features/search/delegates/search_expenses_delegate.dart';
 import 'package:exptrak/models/expense.dart';
 import 'package:exptrak/realm.dart';
+import 'package:exptrak/shared/app_elements/app_colors.dart';
 import 'package:exptrak/shared/app_elements/app_constants.dart';
 import 'package:exptrak/shared/app_elements/app_texts.dart';
 import 'package:exptrak/shared/components.dart/expenses_list.dart';
@@ -110,15 +111,28 @@ class _ExpensesScreenState extends ConsumerState<ExpensesScreen> {
                     children:
                         List<Widget>.generate(periods.length, (int index) {
                       return Center(
-                        child: Text(getPeriodDisplayName(periods[index])),
+                        child: Text(
+                          getPeriodDisplayName(periods[index]),
+                          style: const TextStyle(fontFamily: 'Sk-Modernist'),
+                        ),
                       );
                     }),
                   ),
                 ),
-                child: Text(
-                  getPeriodDisplayName(_selectedPeriod),
-                  style: TextStyle(
-                    color: currenTheme.textTheme.bodyText2!.color!,
+                child: Container(
+                  height: 25,
+                  width: 100,
+                  decoration: BoxDecoration(
+                    color: AppColors.midPurple,
+                    borderRadius: BorderRadius.circular(8.r),
+                  ),
+                  child: Center(
+                    child: Text(
+                      getPeriodDisplayName(_selectedPeriod),
+                      style: TextStyle(
+                          color: currenTheme.backgroundColor,
+                          fontWeight: FontWeight.w600),
+                    ),
                   ),
                 ),
               ),

@@ -1,6 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 
 import 'package:exptrak/features/auth/screens/auth_screen.dart';
+import 'package:exptrak/features/settings/screens/change_pin_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -46,7 +47,7 @@ class MyApp extends ConsumerWidget {
         );
       },
       child: showHome ? const AuthScreen() : const SplashScreen(),
-      // child: const AuthScreen(),
+      // child: const ChangePinScreen(),
     );
   }
 }
