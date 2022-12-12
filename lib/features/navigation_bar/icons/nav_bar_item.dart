@@ -20,7 +20,7 @@ class NavBarItem extends StatelessWidget {
       child: Icon(
         icon,
         color: color,
-        size: 30.sp,
+        size: 33.sp,
       ),
     );
   }

@@ -24,7 +24,14 @@ class DayExpenses extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final currenTheme = ref.watch(themeNotifierProvider);
     return Container(
-      margin: const EdgeInsets.only(bottom: 24),
+      margin: EdgeInsets.only(bottom: 24.h),
+      padding: EdgeInsets.all(10.w),
+      decoration: BoxDecoration(
+        border: Border.all(
+          color: currenTheme.textTheme.bodyText2!.color!,
+        ),
+        borderRadius: BorderRadius.circular(15.r),
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -69,8 +76,8 @@ class DayExpenses extends ConsumerWidget {
               ),
               Text(
                 "NGN ${expenses.sum().removeDecimalZeroFormat()}",
-                style: const TextStyle(
-                  color: CupertinoColors.inactiveGray,
+                style: TextStyle(
+                  color: currenTheme.textTheme.bodyText2!.color,
                   fontWeight: FontWeight.w500,
                 ),
               ),

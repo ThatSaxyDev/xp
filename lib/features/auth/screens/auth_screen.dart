@@ -120,7 +120,7 @@ class _AuthScreenState extends ConsumerState<AuthScreen>
             SizedBox(
               height: 90.h,
               child: Lottie.asset(
-                'lib/assets/lottie/newunlock.json',
+                'lib/assets/lottie/unlock.json',
                 repeat: false,
                 controller: _lottieController,
                 onLoaded: (composition) =>
@@ -149,7 +149,7 @@ class _AuthScreenState extends ConsumerState<AuthScreen>
                       HapticFeedback.heavyImpact();
                     });
 
-                    Timer(const Duration(milliseconds: 1000), () {
+                    Timer(const Duration(milliseconds: 2000), () {
                       navigator.pushAndRemoveUntil(
                           MaterialPageRoute(
                             builder: (context) => const BottomNavBar(),

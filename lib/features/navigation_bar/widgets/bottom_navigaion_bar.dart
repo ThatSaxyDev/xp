@@ -20,6 +20,7 @@ class BottomNavBar extends ConsumerStatefulWidget {
 
 class _BottomNavBarState extends ConsumerState<BottomNavBar> {
   int _page = 0;
+  final PageController controller = PageController();
 
   List<Widget> pages = [
     const ExpensesScreen(),
@@ -32,7 +33,17 @@ class _BottomNavBarState extends ConsumerState<BottomNavBar> {
   Widget build(BuildContext context) {
     final currenTheme = ref.watch(themeNotifierProvider);
     return Scaffold(
-      body: pages[_page],
+      body: PageView(
+        physics: const NeverScrollableScrollPhysics(),
+        controller: controller,
+        children: pages,
+        onPageChanged: (index) {
+          setState(() {
+            _page = index;
+          });
+        },
+      ),
+      // body: pages[_page],
       bottomNavigationBar: Material(
         elevation: 0,
         color: currenTheme.backgroundColor,
@@ -48,6 +59,7 @@ class _BottomNavBarState extends ConsumerState<BottomNavBar> {
                 // home
                 NavBarItem(
                   onTap: () {
+                    controller.jumpToPage(0);
                     setState(() {
                       _page = 0;
                     });
@@ -59,6 +71,7 @@ class _BottomNavBarState extends ConsumerState<BottomNavBar> {
                 // transfer
                 NavBarItem(
                   onTap: () {
+                    controller.jumpToPage(1);
                     setState(() {
                       _page = 1;
                     });
@@ -70,6 +83,7 @@ class _BottomNavBarState extends ConsumerState<BottomNavBar> {
                 // history
                 NavBarItem(
                   onTap: () {
+                    controller.jumpToPage(2);
                     setState(() {
                       _page = 2;
                     });
@@ -81,6 +95,7 @@ class _BottomNavBarState extends ConsumerState<BottomNavBar> {
                 // settings
                 NavBarItem(
                   onTap: () {
+                    controller.jumpToPage(3);
                     setState(() {
                       _page = 3;
                     });

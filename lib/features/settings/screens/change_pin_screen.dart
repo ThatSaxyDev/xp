@@ -187,6 +187,7 @@ class _ChangePinScreenState extends ConsumerState<ChangePinScreen>
                             .substring(0, _pinController.text.length - 1);
                       },
                       onTap: () {
+                        HapticFeedback.mediumImpact();
                         if (_pinController.text.length == 4) {
                           setState(() {
                             _pin = _pinController.text;

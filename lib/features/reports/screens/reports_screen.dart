@@ -1,5 +1,7 @@
 import 'dart:async';
 
+import 'package:exptrak/features/reports/widgets/charts/monthly_charts.dart';
+import 'package:exptrak/features/reports/widgets/charts/yearly_charts.dart';
 import 'package:exptrak/realm.dart';
 import 'package:exptrak/shared/components.dart/expenses_list.dart';
 import 'package:exptrak/shared/extensions/date_extensions.dart';
@@ -9,9 +11,7 @@ import 'package:exptrak/models/expense.dart';
 import 'package:exptrak/shared/app_elements/app_constants.dart';
 import 'package:exptrak/shared/utils/picker.dart';
 import 'package:exptrak/shared/types/period.dart';
-import 'package:exptrak/shared/widgets/charts/monthly_charts.dart';
-import 'package:exptrak/shared/widgets/charts/weekly_charts.dart';
-import 'package:exptrak/shared/widgets/charts/yearly_charts.dart';
+import 'package:exptrak/features/reports/widgets/charts/weekly_charts.dart';
 import 'package:exptrak/theme/palette.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -28,7 +28,8 @@ class ReportsScreen extends ConsumerStatefulWidget {
   ConsumerState<ConsumerStatefulWidget> createState() => _ReportsScreenState();
 }
 
-class _ReportsScreenState extends ConsumerState<ReportsScreen> {
+class _ReportsScreenState extends ConsumerState<ReportsScreen>
+    with AutomaticKeepAliveClientMixin {
   final PageController _controller = PageController(initialPage: 0);
   set _currentPage(int value) {
     setStateValues(value);
@@ -97,6 +98,7 @@ class _ReportsScreenState extends ConsumerState<ReportsScreen> {
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     final currenTheme = ref.watch(themeNotifierProvider);
     _expensesSub ??= realmExpenses.changes.listen((changes) {
       setStateValues(_controller.page!.toInt());
@@ -275,4 +277,7 @@ class _ReportsScreenState extends ConsumerState<ReportsScreen> {
       ),
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }

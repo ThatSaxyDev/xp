@@ -31,7 +31,8 @@ class AddExpenseScreen extends ConsumerStatefulWidget {
       _AddExpenseScreenState();
 }
 
-class _AddExpenseScreenState extends ConsumerState<AddExpenseScreen> {
+class _AddExpenseScreenState extends ConsumerState<AddExpenseScreen>
+    with AutomaticKeepAliveClientMixin {
   var realmCategories = realm.all<Category>();
   StreamSubscription<RealmResultsChanges<Category>>? _categoriesSub;
   late TextEditingController _amountController;
@@ -91,6 +92,7 @@ class _AddExpenseScreenState extends ConsumerState<AddExpenseScreen> {
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     final currenTheme = ref.watch(themeNotifierProvider);
     _categoriesSub ??= realmCategories.changes.listen((event) {
       categories = event.results.toList();
@@ -555,4 +557,7 @@ class _AddExpenseScreenState extends ConsumerState<AddExpenseScreen> {
           );
         });
   }
+  
+  @override
+  bool get wantKeepAlive => true;
 }

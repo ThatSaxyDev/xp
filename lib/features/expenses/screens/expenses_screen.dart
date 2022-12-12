@@ -29,7 +29,8 @@ class ExpensesScreen extends ConsumerStatefulWidget {
   ConsumerState<ConsumerStatefulWidget> createState() => _ExpensesScreenState();
 }
 
-class _ExpensesScreenState extends ConsumerState<ExpensesScreen> {
+class _ExpensesScreenState extends ConsumerState<ExpensesScreen>
+    with AutomaticKeepAliveClientMixin {
   int _selectedPeriodIndex = 1;
   Period get _selectedPeriod => periods[_selectedPeriodIndex];
 
@@ -53,6 +54,7 @@ class _ExpensesScreenState extends ConsumerState<ExpensesScreen> {
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     final currenTheme = ref.watch(themeNotifierProvider);
     return Scaffold(
       appBar: AppBar(
@@ -194,4 +196,7 @@ class _ExpensesScreenState extends ConsumerState<ExpensesScreen> {
       ),
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }
