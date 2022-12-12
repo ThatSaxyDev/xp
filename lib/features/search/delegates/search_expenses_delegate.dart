@@ -3,14 +3,20 @@ import 'package:exptrak/realm.dart';
 import 'package:exptrak/shared/app_elements/app_colors.dart';
 import 'package:exptrak/shared/app_elements/app_constants.dart';
 import 'package:exptrak/shared/app_elements/app_texts.dart';
+import 'package:exptrak/shared/components.dart/category_badge.dart';
+import 'package:exptrak/shared/extensions/expense_extensions.dart';
+import 'package:exptrak/shared/extensions/number_extensions.dart';
 import 'package:exptrak/shared/widgets/spacer.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:intl/intl.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 import 'package:realm/realm.dart';
 
+import '../../../shared/components.dart/expense_row.dart';
 import '../../../theme/palette.dart';
 
 class SearchExpensesDelegate extends SearchDelegate {
@@ -111,39 +117,106 @@ class SearchExpensesDelegate extends SearchDelegate {
                 builder: (context, ref, child) {
                   final currenTheme = ref.watch(themeNotifierProvider);
 
-                  return ListTile(
-                    leading: Container(
-                      padding: const EdgeInsets.fromLTRB(6, 2, 6, 2),
-                      decoration: BoxDecoration(
-                        color: suggestions[index]
-                                .category
-                                ?.color
-                                .withOpacity(0.27) ??
-                            currenTheme.textTheme.bodyText2!.color,
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                      child: Text(
-                        suggestions[index].category?.name ?? "Unknown",
-                        style: TextStyle(
-                          color: suggestions[index].category?.color ??
-                              currenTheme.backgroundColor,
-                          fontSize: 13.sp,
-                        ),
-                      ),
-                    ),
-                    title: Text(
-                      suggestions[index].note!,
-                      style: TextStyle(
-                        // color: suggestions[index].category!.color,
+                  return Container(
+                    margin:
+                        EdgeInsets.only(bottom: 10.h, left: 10.w, right: 10.w, top: 14.h),
+                    padding: EdgeInsets.all(10.w),
+                    decoration: BoxDecoration(
+                      border: Border.all(
                         color: currenTheme.textTheme.bodyText2!.color!,
                       ),
+                      borderRadius: BorderRadius.circular(15.r),
                     ),
-                    subtitle: Text(
-                      '${AppTexts.naira}${suggestions[index].amount}',
-                      style: TextStyle(
-                          color: AppColors.midPurple, fontSize: 13.sp),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          DateFormat.yMMMEd().format(suggestions[index].date),
+                          style: const TextStyle(
+                            color: CupertinoColors.inactiveGray,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                        Spc(h: 7.h),
+                        Divider(
+                          thickness: 1,
+                          color: currenTheme.textTheme.bodyText2!.color!,
+                        ),
+                        Column(
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                SizedBox(
+                                  width: 250.w,
+                                  child: Text(
+                                    suggestions[index].note ?? 'Unknown',
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 17.sp,
+                                      color: currenTheme
+                                          .textTheme.bodyText2!.color!,
+                                    ),
+                                  ),
+                                ),
+                                Text(
+                                  'NGN ${suggestions[index].amount.toStringAsFixed(0)}',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 17.sp,
+                                    color: AppColors.midPurple,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Spc(h: 7.h),
+                            Container(
+                              margin: EdgeInsets.only(top: 4.h),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  CategoryBadge(
+                                      category: suggestions[index].category),
+                                  Text(
+                                    DateFormat.Hm()
+                                        .format(suggestions[index].date),
+                                    style: const TextStyle(
+                                      color: CupertinoColors.inactiveGray,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                        Spc(h: 7.h),
+                        // Divider(
+                        //   thickness: 1,
+                        //   color: currenTheme.textTheme.bodyText2!.color!,
+                        // ),
+                        // Row(
+                        //   crossAxisAlignment: CrossAxisAlignment.start,
+                        //   children: <Widget>[
+                        //     const Expanded(
+                        //       child: Text(
+                        //         "Total:",
+                        //         style: TextStyle(
+                        //           color: CupertinoColors.inactiveGray,
+                        //         ),
+                        //       ),
+                        //     ),
+                        //     Text(
+                        //       "NGN ${expenses.sum().removeDecimalZeroFormat()}",
+                        //       style: TextStyle(
+                        //         color: currenTheme.textTheme.bodyText2!.color,
+                        //         fontWeight: FontWeight.w500,
+                        //       ),
+                        //     ),
+                        //   ],
+                        // ),
+                      ],
                     ),
-                    onTap: () {},
                   );
                 },
               );
@@ -151,3 +224,10 @@ class SearchExpensesDelegate extends SearchDelegate {
           );
   }
 }
+
+
+// color: suggestions[index]
+//                                 .category
+//                                 ?.color
+//                                 .withOpacity(0.27) ??
+//                             currenTheme.textTheme.bodyText2!.color,
