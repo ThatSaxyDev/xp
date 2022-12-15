@@ -157,7 +157,7 @@ class _ReportsScreenState extends ConsumerState<ReportsScreen>
         reverse: true,
         itemBuilder: (context, index) {
           return Container(
-            padding: const EdgeInsets.all(16),
+            padding: EdgeInsets.all(10.w),
             child: Column(
               children: [
                 Row(
