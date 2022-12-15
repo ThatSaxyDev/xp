@@ -127,7 +127,9 @@ class _ExpensesScreenState extends ConsumerState<ExpensesScreen>
                       return Center(
                         child: Text(
                           getPeriodDisplayName(periods[index]),
-                          style: const TextStyle(fontFamily: 'Sk-Modernist'),
+                          style: const TextStyle(
+                            fontFamily: 'Sk-Modernist',
+                          ),
                         ),
                       );
                     }),

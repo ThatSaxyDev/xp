@@ -139,7 +139,12 @@ class _ReportsScreenState extends ConsumerState<ReportsScreen>
                 children:
                     List<Widget>.generate(periods.length - 1, (int index) {
                   return Center(
-                    child: Text(periods[index + 1].name),
+                    child: Text(
+                      periods[index + 1].name,
+                      style: const TextStyle(
+                        fontFamily: 'Sk-Modernist',
+                      ),
+                    ),
                   );
                 }),
               ),
