@@ -1,7 +1,5 @@
 import 'dart:async';
 import 'dart:developer';
-
-import 'package:exptrak/features/auth/screens/confirm_pin_screen.dart';
 import 'package:exptrak/features/auth/widgets/enable_biometrics_modal.dart';
 import 'package:exptrak/features/auth/widgets/numpad.dart';
 import 'package:exptrak/features/auth/widgets/pin_input_box.dart';
@@ -10,13 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import 'package:exptrak/features/navigation_bar/widgets/bottom_navigaion_bar.dart';
-import 'package:exptrak/shared/app_elements/app_images.dart';
-import 'package:exptrak/shared/app_elements/app_texts.dart';
-import 'package:exptrak/shared/widgets/button.dart';
 import 'package:exptrak/shared/widgets/spacer.dart';
-import 'package:exptrak/shared/widgets/text_input.dart';
 import 'package:exptrak/theme/palette.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:local_auth/local_auth.dart';

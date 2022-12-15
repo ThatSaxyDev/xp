@@ -1,5 +1,4 @@
 import 'package:exptrak/features/auth/screens/create_pin_screen.dart';
-import 'package:exptrak/features/navigation_bar/widgets/bottom_navigaion_bar.dart';
 import 'package:exptrak/shared/app_elements/app_images.dart';
 import 'package:exptrak/shared/widgets/button.dart';
 import 'package:exptrak/theme/palette.dart';

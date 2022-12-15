@@ -2,9 +2,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:phosphor_flutter/phosphor_flutter.dart';
-import 'package:unicons/unicons.dart';
-
 import 'package:exptrak/features/auth/widgets/keypad_item.dart';
 import 'package:exptrak/shared/app_elements/app_colors.dart';
 import 'package:exptrak/shared/widgets/spacer.dart';

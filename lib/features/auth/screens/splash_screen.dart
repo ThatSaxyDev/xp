@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:exptrak/features/auth/screens/tap_to_create_pin_screen.dart';
-import 'package:exptrak/features/navigation_bar/widgets/bottom_navigaion_bar.dart';
 import 'package:exptrak/shared/app_elements/app_colors.dart';
 import 'package:exptrak/shared/app_elements/app_images.dart';
 // import 'package:exptrak/theme/palette.dart';
@@ -54,8 +53,7 @@ class _SplashScreenState extends ConsumerState<SplashScreen>
                   borderWidth: 0,
                   borderRadius: 500.r,
                   value: value,
-                  valueColor:
-                      const AlwaysStoppedAnimation(AppColors.black),
+                  valueColor: const AlwaysStoppedAnimation(AppColors.black),
                   backgroundColor: Colors.white,
                   direction: Axis.vertical,
                   center: SizedBox(

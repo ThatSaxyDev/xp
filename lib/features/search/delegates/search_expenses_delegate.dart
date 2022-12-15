@@ -1,11 +1,7 @@
 import 'package:exptrak/models/expense.dart';
 import 'package:exptrak/realm.dart';
 import 'package:exptrak/shared/app_elements/app_colors.dart';
-import 'package:exptrak/shared/app_elements/app_constants.dart';
-import 'package:exptrak/shared/app_elements/app_texts.dart';
 import 'package:exptrak/shared/components.dart/category_badge.dart';
-import 'package:exptrak/shared/extensions/expense_extensions.dart';
-import 'package:exptrak/shared/extensions/number_extensions.dart';
 import 'package:exptrak/shared/widgets/spacer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -14,9 +10,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
-import 'package:realm/realm.dart';
-
-import '../../../shared/components.dart/expense_row.dart';
 import '../../../theme/palette.dart';
 
 class SearchExpensesDelegate extends SearchDelegate {
@@ -42,6 +35,14 @@ class SearchExpensesDelegate extends SearchDelegate {
   // }
 
   @override
+  ThemeData appBarTheme(BuildContext context) {
+    return super.appBarTheme(context).copyWith(
+          appBarTheme: super.appBarTheme(context).appBarTheme.copyWith(
+                elevation: 0.0,
+              ),
+        );
+  }
+
   @override
   List<Widget>? buildActions(BuildContext context) {
     return [
@@ -118,8 +119,8 @@ class SearchExpensesDelegate extends SearchDelegate {
                   final currenTheme = ref.watch(themeNotifierProvider);
 
                   return Container(
-                    margin:
-                        EdgeInsets.only(bottom: 10.h, left: 10.w, right: 10.w, top: 14.h),
+                    margin: EdgeInsets.only(
+                        bottom: 10.h, left: 10.w, right: 10.w, top: 14.h),
                     padding: EdgeInsets.all(10.w),
                     decoration: BoxDecoration(
                       border: Border.all(

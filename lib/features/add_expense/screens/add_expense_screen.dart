@@ -16,7 +16,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:phosphor_flutter/phosphor_flutter.dart';
+import 'package:intl/intl.dart';
 import 'package:realm/realm.dart';
 
 import '../../../models/expense.dart';
@@ -46,6 +46,12 @@ class _AddExpenseScreenState extends ConsumerState<AddExpenseScreen>
   DateTime _selectedDate = DateTime.now();
   bool canSubmit = false;
 
+  void updateTime() {
+    setState(() {
+      _selectedDate = DateTime.now();
+    });
+  }
+
   @override
   void initState() {
     super.initState();
@@ -56,6 +62,13 @@ class _AddExpenseScreenState extends ConsumerState<AddExpenseScreen>
     _noteController = TextEditingController();
     categories = realmCategories.toList();
     // canSubmit = categories.isNotEmpty && _amountController.text.isNotEmpty;
+
+    // update the time every 55 secs
+    Timer.periodic(const Duration(seconds: 55), (timer) {
+      setState(() {
+        updateTime();
+      });
+    });
   }
 
   @override
@@ -417,7 +430,8 @@ class _AddExpenseScreenState extends ConsumerState<AddExpenseScreen>
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                '${_selectedDate.month}/${_selectedDate.day}/${_selectedDate.year}  ${_selectedDate.hour}:${_selectedDate.minute}',
+                                // '${_selectedDate.month}/${_selectedDate.day}/${_selectedDate.year}  ${_selectedDate.hour}:${_selectedDate.minute}',
+                                '${DateFormat.yMMMEd().format(_selectedDate)} : ${DateFormat.jm().format(_selectedDate)}',
                                 style: TextStyle(
                                   color: currenTheme.textTheme.bodyText2!.color,
                                 ),
@@ -557,7 +571,7 @@ class _AddExpenseScreenState extends ConsumerState<AddExpenseScreen>
           );
         });
   }
-  
+
   @override
   bool get wantKeepAlive => true;
 }

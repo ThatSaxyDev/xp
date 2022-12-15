@@ -40,10 +40,22 @@ class _ExpensesScreenState extends ConsumerState<ExpensesScreen>
 
   double get _total => _expenses.map((expense) => expense.amount).sum;
 
+  void refreshExpenseList() {
+    setState(() {
+      _expenses = realmExpenses.toList().filterByPeriod(
+          _selectedPeriod, 0)[0]; // Update the items in the list
+    });
+  }
+
   @override
   void initState() {
     super.initState();
     _expenses = realmExpenses.toList().filterByPeriod(_selectedPeriod, 0)[0];
+    Timer.periodic(const Duration(seconds: 1), (timer) {
+      setState(() {
+        refreshExpenseList();
+      });
+    });
   }
 
   @override

@@ -2,7 +2,6 @@ import 'package:exptrak/features/auth/screens/confirm_old_pin_screen.dart';
 import 'package:exptrak/features/auth/screens/tap_to_create_pin_screen.dart';
 import 'package:exptrak/features/auth/widgets/enable_biometrics_modal.dart';
 import 'package:exptrak/features/settings/screens/categories_screen.dart';
-import 'package:exptrak/features/settings/screens/change_pin_screen.dart';
 import 'package:exptrak/models/category.dart';
 import 'package:exptrak/models/expense.dart';
 import 'package:exptrak/realm.dart';

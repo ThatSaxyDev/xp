@@ -15,10 +15,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:local_auth/local_auth.dart';
 import 'package:local_hero/local_hero.dart';
 import 'package:lottie/lottie.dart';
-import 'package:phosphor_flutter/phosphor_flutter.dart';
-import 'package:pinput/pinput.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:unicons/unicons.dart';
 
 class AuthScreen extends ConsumerStatefulWidget {
   const AuthScreen({super.key});
@@ -48,7 +45,7 @@ class _AuthScreenState extends ConsumerState<AuthScreen>
           localizedReason: 'Please authenticate to sign in');
 
       if (didAuthenticate) {
-       _pinController.text = prefs.getString('pin') ?? '';
+        _pinController.text = prefs.getString('pin') ?? '';
       }
     } else {
       // _usernameController.text = await _storage.read(key: KEY_USERNAME) ?? '';
@@ -89,34 +86,6 @@ class _AuthScreenState extends ConsumerState<AuthScreen>
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            // Text(
-            //   'Welcome',
-            //   style: TextStyle(
-            //     color: currentTheme.textTheme.bodyText2!.color,
-            //     fontSize: 30.sp,
-            //     fontWeight: FontWeight.w500,
-            //   ),
-            // ),
-
-            //
-            // CircleAvatar(
-            //   radius: 45.w,
-            //   backgroundColor: isPinCorrect
-            //       ? currentTheme.textTheme.bodyText2!.color
-            //       : AppColors.midPurple,
-            //   child: CircleAvatar(
-            //     radius: 39.w,
-            //     backgroundColor: currentTheme.backgroundColor,
-            //     child: Icon(
-            //       UniconsSolid.lock,
-            //       color: isPinCorrect
-            //           ? currentTheme.textTheme.bodyText2!.color
-            //           : AppColors.midPurple,
-            //       size: 27.sp,
-            //     ),
-            //   ),
-            // ),
-
             SizedBox(
               height: 90.h,
               child: Lottie.asset(

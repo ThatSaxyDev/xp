@@ -3,7 +3,6 @@ import 'dart:developer';
 
 import 'package:exptrak/features/auth/widgets/numpad.dart';
 import 'package:exptrak/features/auth/widgets/pin_input_box.dart';
-import 'package:exptrak/features/navigation_bar/widgets/bottom_navigaion_bar.dart';
 import 'package:exptrak/features/settings/screens/change_pin_screen.dart';
 import 'package:exptrak/shared/app_elements/app_colors.dart';
 import 'package:exptrak/shared/widgets/spacer.dart';
@@ -16,10 +15,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:local_auth/local_auth.dart';
 import 'package:local_hero/local_hero.dart';
 import 'package:lottie/lottie.dart';
-import 'package:phosphor_flutter/phosphor_flutter.dart';
-import 'package:pinput/pinput.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:unicons/unicons.dart';
 
 class ConfirmOldPinScreen extends ConsumerStatefulWidget {
   const ConfirmOldPinScreen({super.key});
