@@ -1,10 +1,10 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:exptrak/theme/palette.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:exptrak/shared/app_elements/app_colors.dart';
+import 'package:exptrak/theme/palette.dart';
 
 class TextInputBox extends ConsumerWidget {
   final double? height;
@@ -17,6 +17,7 @@ class TextInputBox extends ConsumerWidget {
   final TextInputType? keyboardType;
   final int? maxLines;
   final void Function(String)? onChanged;
+  final void Function()? onTap;
   const TextInputBox({
     Key? key,
     this.height,
@@ -29,6 +30,7 @@ class TextInputBox extends ConsumerWidget {
     this.keyboardType,
     this.maxLines,
     this.onChanged,
+    this.onTap,
   }) : super(key: key);
 
   @override
@@ -38,6 +40,7 @@ class TextInputBox extends ConsumerWidget {
       height: height,
       width: width,
       child: TextFormField(
+        onTap: onTap,
         onChanged: onChanged,
         maxLines: maxLines,
         style: TextStyle(

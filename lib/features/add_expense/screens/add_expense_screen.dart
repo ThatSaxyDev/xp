@@ -32,7 +32,8 @@ class AddExpenseScreen extends ConsumerStatefulWidget {
 }
 
 class _AddExpenseScreenState extends ConsumerState<AddExpenseScreen>
-    with AutomaticKeepAliveClientMixin {
+    // with AutomaticKeepAliveClientMixin 
+    {
   var realmCategories = realm.all<Category>();
   StreamSubscription<RealmResultsChanges<Category>>? _categoriesSub;
   late TextEditingController _amountController;
@@ -64,11 +65,11 @@ class _AddExpenseScreenState extends ConsumerState<AddExpenseScreen>
     // canSubmit = categories.isNotEmpty && _amountController.text.isNotEmpty;
 
     // update the time every 55 secs
-    Timer.periodic(const Duration(seconds: 55), (timer) {
-      setState(() {
-        updateTime();
-      });
-    });
+    // Timer.periodic(const Duration(seconds: 55), (timer) {
+    //   setState(() {
+    //     updateTime();
+    //   });
+    // });
   }
 
   @override
@@ -99,13 +100,13 @@ class _AddExpenseScreenState extends ConsumerState<AddExpenseScreen>
         _selectedCategoryIndex = 0;
       });
     } catch (e) {
-      showSnackBar(context, 'Type a valid amount');
+      showSnackBar(context, e.toString());
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    super.build(context);
+    // super.build(context);
     final currenTheme = ref.watch(themeNotifierProvider);
     _categoriesSub ??= realmCategories.changes.listen((event) {
       categories = event.results.toList();
@@ -148,6 +149,7 @@ class _AddExpenseScreenState extends ConsumerState<AddExpenseScreen>
                       ),
                       Spc(h: 10.h),
                       TextInputBox(
+                        onTap: updateTime,
                         onChanged: (value) {
                           setState(() => canSubmit =
                               categories.isNotEmpty && value.isNotEmpty);
@@ -182,6 +184,7 @@ class _AddExpenseScreenState extends ConsumerState<AddExpenseScreen>
                       ),
                       Spc(h: 10.h),
                       TextInputBox(
+                        onTap: updateTime,
                         hintText: 'Type a note',
                         controller: _noteController,
                         keyboardType: TextInputType.multiline,
@@ -572,6 +575,6 @@ class _AddExpenseScreenState extends ConsumerState<AddExpenseScreen>
         });
   }
 
-  @override
-  bool get wantKeepAlive => true;
+  // @override
+  // bool get wantKeepAlive => true;
 }

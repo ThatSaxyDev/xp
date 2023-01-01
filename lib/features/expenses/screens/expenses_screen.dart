@@ -30,7 +30,7 @@ class ExpensesScreen extends ConsumerStatefulWidget {
 }
 
 class _ExpensesScreenState extends ConsumerState<ExpensesScreen>
-    with AutomaticKeepAliveClientMixin {
+    /*with AutomaticKeepAliveClientMixin */{
   int _selectedPeriodIndex = 1;
   Period get _selectedPeriod => periods[_selectedPeriodIndex];
 
@@ -40,22 +40,22 @@ class _ExpensesScreenState extends ConsumerState<ExpensesScreen>
 
   double get _total => _expenses.map((expense) => expense.amount).sum;
 
-  void refreshExpenseList() {
-    setState(() {
-      _expenses = realmExpenses.toList().filterByPeriod(
-          _selectedPeriod, 0)[0]; // Update the items in the list
-    });
-  }
+  // void refreshExpenseList() {
+  //   setState(() {
+  //     _expenses = realmExpenses.toList().filterByPeriod(
+  //         _selectedPeriod, 0)[0]; // Update the items in the list
+  //   });
+  // }
 
   @override
   void initState() {
     super.initState();
     _expenses = realmExpenses.toList().filterByPeriod(_selectedPeriod, 0)[0];
-    Timer.periodic(const Duration(seconds: 1), (timer) {
-      setState(() {
-        refreshExpenseList();
-      });
-    });
+    // Timer.periodic(const Duration(seconds: 1), (timer) {
+    //   setState(() {
+    //     refreshExpenseList();
+    //   });
+    // });
   }
 
   @override
@@ -66,7 +66,7 @@ class _ExpensesScreenState extends ConsumerState<ExpensesScreen>
 
   @override
   Widget build(BuildContext context) {
-    super.build(context);
+    // super.build(context);
     final currenTheme = ref.watch(themeNotifierProvider);
     return Scaffold(
       appBar: AppBar(
@@ -211,6 +211,6 @@ class _ExpensesScreenState extends ConsumerState<ExpensesScreen>
     );
   }
 
-  @override
-  bool get wantKeepAlive => true;
+  // @override
+  // bool get wantKeepAlive => true;
 }
